@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="12dp"
+    >
+    
+    <ImageView
+        android:id="@+id/ivSongImage"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        />
+
+    <TextView
+        android:id="@+id/songTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="3dp"
+        android:hint="Name of the song"
+        app:layout_constraintLeft_toRightOf="@id/ivSongImage"
+        app:layout_constraintVertical_chainStyle="packed"
+        app:layout_constraintTop_toTopOf="@id/ivSongImage"
+        app:layout_constraintBottom_toTopOf="@id/songArtist"
+        />
+
+    <TextView
+        android:id="@+id/songArtist"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="3dp"
+        android:hint="Name of the artist"
+        app:layout_constraintStart_toStartOf="@+id/songTitle"
+        app:layout_constraintVertical_chainStyle="packed"
+        app:layout_constraintTop_toBottomOf="@id/songTitle"
+        app:layout_constraintBottom_toBottomOf="@id/ivSongImage"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

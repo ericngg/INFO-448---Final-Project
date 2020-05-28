@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="allsides_padding">16dp</dimen>
+    <dimen name="cover_width">323dp</dimen>
+    <dimen name="cover_height">312dp</dimen>
+    <dimen name="cover_margintop">12dp</dimen>
+    <dimen name="currentsong_margintop">344dp</dimen>
+    <dimen name="artists_margintop">375dp</dimen>
+    <dimen name="playtimes_margintop">416dp</dimen>
+    <dimen name="next_margintop">472dp</dimen>
+</resources>
