@@ -1,14 +1,16 @@
 package com.ljchen17.myapplication.fragment
 
+import android.content.Intent
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.fragment.app.Fragment
 import com.ljchen17.myapplication.R
+import com.ljchen17.myapplication.activity.ComposeActivity
+import com.ljchen17.myapplication.activity.EditActivity
 import com.ljchen17.myapplication.model.GroceryDetails
 import kotlinx.android.synthetic.main.grocery_details.*
 import kotlin.random.Random
+
 
 /**
  * A simple [Fragment] subclass.
@@ -27,6 +29,8 @@ class GroceryDetailsFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        setHasOptionsMenu(true);
 
         arguments?.let { args ->
             val grocery = args.getParcelable<GroceryDetails>(ARG_GROCERY)
@@ -71,4 +75,21 @@ class GroceryDetailsFragment : Fragment() {
         }
     }
 
+    override fun onCreateOptionsMenu(
+        menu: Menu?, inflater: MenuInflater
+    ) {
+        inflater.inflate(R.menu.menu, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        // handle item selection
+        if (item.itemId == R.id.action_edit) {
+            val intent = Intent(context, EditActivity::class.java)
+            intent.putExtra(EditActivity.ITEM_TO_EDIT, grocery)
+            startActivity(intent)
+        }  else {
+            super.onOptionsItemSelected(item)
+        }
+        return true
+    }
 }

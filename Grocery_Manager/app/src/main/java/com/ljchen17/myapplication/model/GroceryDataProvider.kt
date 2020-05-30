@@ -28,7 +28,7 @@ class GroceryDataProvider {
                     "Steak",
                     1,
                     "2020/06/05",
-                    "Meat & Seafood",
+                    "Meat and Seafood",
                     "Steak bought from Safeway"
                 )
             )
@@ -37,7 +37,7 @@ class GroceryDataProvider {
                     "Milk",
                     2,
                     "2020/07/02",
-                    "Dairy & Eggs",
+                    "Dairy and Eggs",
                     "Milk bought from Safeway"
                 )
             )
@@ -46,7 +46,7 @@ class GroceryDataProvider {
                     "Egg",
                     1,
                     "2020/06/02",
-                    "Dairy & Eggs",
+                    "Dairy and Eggs",
                     "Egg bought from Safeway"
                 )
             )
@@ -64,7 +64,7 @@ class GroceryDataProvider {
                     "Shrimp",
                     1,
                     "2020/06/02",
-                    "Meat & Seafood",
+                    "Meat and Seafood",
                     "Shrimp bought from Safeway"
                 )
             )

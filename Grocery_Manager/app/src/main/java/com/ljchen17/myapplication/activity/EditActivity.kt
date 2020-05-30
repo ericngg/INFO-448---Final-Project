@@ -1,12 +1,14 @@
 package com.ljchen17.myapplication.activity
 
 import android.app.DatePickerDialog
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.view.View
 import android.widget.*
+import androidx.appcompat.app.AppCompatActivity
 import com.ljchen17.myapplication.R
+import com.ljchen17.myapplication.fragment.GroceryDetailsFragment
+import com.ljchen17.myapplication.model.GroceryDetails
 import kotlinx.android.synthetic.main.activity_edit.*
 import java.text.SimpleDateFormat
 import java.util.*
@@ -57,15 +59,26 @@ class EditActivity : AppCompatActivity() {
                 android.R.layout.simple_spinner_item, categories)
             spinner.adapter = adapter
 
-            /**spinner.onItemSelectedListener = object :
+            spinner.onItemSelectedListener = object :
                 AdapterView.OnItemSelectedListener {
                 override fun onItemSelected(parent: AdapterView<*>,
                                             view: View, position: Int, id: Long) {
+            val selectedItemText = parent.getItemAtPosition(position);
                 }
                 override fun onNothingSelected(parent: AdapterView<*>) {
                     // write code to perform some action
                 }
-            }**/
+            }
+        }
+
+        val grocery = intent.getParcelableExtra<GroceryDetails>(ITEM_TO_EDIT)
+        if (grocery != null) {
+            itemName.text = Editable.Factory.getInstance().newEditable(grocery.itemName)
+            quantity.text = Editable.Factory.getInstance().newEditable(grocery.quantity.toString())
+            expirationDate?.text = grocery.expiration
+            //category.text = grocery!!.category
+            spinner.setSelection(categories.indexOf(grocery.category))
+            description?.text = Editable.Factory.getInstance().newEditable(grocery.description)
         }
     }
 
@@ -77,5 +90,6 @@ class EditActivity : AppCompatActivity() {
 
     companion object {
         val TAG: String = EditActivity::class.java.simpleName
+        const val ITEM_TO_EDIT = "item_to_edit"
     }
 }

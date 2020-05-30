@@ -1,11 +1,7 @@
 package com.ljchen17.myapplication.activity
 
 import android.os.Bundle
-import android.view.View
-import android.widget.Button
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.constraintlayout.widget.ConstraintLayout
 import com.ljchen17.myapplication.R
 import com.ljchen17.myapplication.fragment.GroceryDetailsFragment
 import com.ljchen17.myapplication.fragment.OnGroceryClickListener
@@ -19,7 +15,7 @@ class ComposeActivity : AppCompatActivity(), OnGroceryClickListener {
     private var currentGrocery : GroceryDetails? = null
 
     companion object {
-        val STATE_SONG = "currentgrocery"
+        val STATE_GROCERY = "currentgrocery"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,7 +25,7 @@ class ComposeActivity : AppCompatActivity(), OnGroceryClickListener {
         if (savedInstanceState != null) {
 
                 with(savedInstanceState) {
-                    currentGrocery = getParcelable(STATE_SONG)
+                    currentGrocery = getParcelable(STATE_GROCERY)
                 }
 
             val groceryDetailsFragment = getGroceryDetailFragment()
@@ -76,7 +72,7 @@ class ComposeActivity : AppCompatActivity(), OnGroceryClickListener {
     override fun onSaveInstanceState(outState: Bundle) {
 
         outState?.run {
-            putParcelable(STATE_SONG, currentGrocery)
+            putParcelable(STATE_GROCERY, currentGrocery)
         }
         super.onSaveInstanceState(outState)
     }

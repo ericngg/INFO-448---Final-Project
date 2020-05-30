@@ -6,10 +6,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -76,7 +74,6 @@ class GroceryListFragment : Fragment() {
 
         addItemBtn.setOnClickListener {
             val intent = Intent(context, EditActivity::class.java)
-            //intent.putExtra(SONG_IMAGE, currentSong.largeImageID)
             startActivity(intent)
         }
 
