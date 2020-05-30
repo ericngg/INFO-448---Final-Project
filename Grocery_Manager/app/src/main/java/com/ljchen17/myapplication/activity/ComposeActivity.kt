@@ -1,46 +1,41 @@
 package com.ljchen17.myapplication.activity
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
-import com.ericchee.songdataprovider.Song
-import com.ericchee.songdataprovider.SongDataProvider
 import com.ljchen17.myapplication.R
-import com.ljchen17.myapplication.fragment.NowPlayingFragment
-import com.ljchen17.myapplication.fragment.OnSongClickListener
-import com.ljchen17.myapplication.fragment.SongListFragment
+import com.ljchen17.myapplication.fragment.GroceryDetailsFragment
+import com.ljchen17.myapplication.fragment.OnGroceryClickListener
+import com.ljchen17.myapplication.fragment.GroceryListFragment
+import com.ljchen17.myapplication.model.GroceryDataProvider
+import com.ljchen17.myapplication.model.GroceryDetails
 
 
-class ComposeActivity : AppCompatActivity(), OnSongClickListener {
+class ComposeActivity : AppCompatActivity(), OnGroceryClickListener {
 
-    private var currentSong : Song? = null
+    private var currentGrocery : GroceryDetails? = null
 
     companion object {
-        val STATE_SONG = "currentSong"
+        val STATE_SONG = "currentgrocery"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView((R.layout.activity_compose))
 
-
         if (savedInstanceState != null) {
 
                 with(savedInstanceState) {
-                    currentSong = getParcelable(STATE_SONG)
-                    setMiniDisplay()
+                    currentGrocery = getParcelable(STATE_SONG)
                 }
 
-            val nowPlayingFragment = getSongDetailFragment()
+            val groceryDetailsFragment = getGroceryDetailFragment()
 
-            if (nowPlayingFragment != null) {
+            if (groceryDetailsFragment != null) {
 
-                var miniPlayerComponent = findViewById<ConstraintLayout>(R.id.miniPlayerComponent)
-                miniPlayerComponent.visibility = View.GONE
                 supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
             } else {
@@ -51,33 +46,19 @@ class ComposeActivity : AppCompatActivity(), OnSongClickListener {
         } else {
 
             val argumentBundle = Bundle().apply {
-                val songList = SongDataProvider.getAllSongs()
-                putParcelableArrayList(SongListFragment.ARG_SONGLIST, ArrayList(songList))
+                val groceryList = GroceryDataProvider.getAllGroceries()
+                putParcelableArrayList(GroceryListFragment.ARG_GROCERYLIST, ArrayList(groceryList))
             }
 
-            val songListFragment = SongListFragment()
-            val shuffleButton = findViewById<Button>(R.id.shuffleSongs)
-            shuffleButton.setOnClickListener {
-                songListFragment.shuffleList()
-            }
-            songListFragment.arguments = argumentBundle
+            val groceryListFragment = GroceryListFragment()
+            groceryListFragment.arguments = argumentBundle
 
             supportFragmentManager
                 .beginTransaction()
-                .add(R.id.fragContainer, songListFragment,SongListFragment.TAG)
+                .add(R.id.fragContainer, groceryListFragment,GroceryListFragment.TAG)
                 .commit()
 
             supportActionBar?.setDisplayHomeAsUpEnabled(false)
-        }
-
-        var songListFragment = supportFragmentManager.findFragmentByTag(SongListFragment.TAG) as? SongListFragment
-
-        if (songListFragment!=null) {
-
-             val shuffleButton = findViewById<Button>(R.id.shuffleSongs)
-            shuffleButton.setOnClickListener {
-                songListFragment.shuffleList()
-            }
         }
 
         supportFragmentManager.addOnBackStackChangedListener {
@@ -87,10 +68,6 @@ class ComposeActivity : AppCompatActivity(), OnSongClickListener {
             if (hasBackStack) {
                 supportActionBar?.setDisplayHomeAsUpEnabled(true)
             } else {
-
-                var miniPlayerComponent = findViewById<ConstraintLayout>(R.id.miniPlayerComponent)
-                miniPlayerComponent.visibility = View.VISIBLE
-
                 supportActionBar?.setDisplayHomeAsUpEnabled(false)
             }
         }
@@ -99,12 +76,12 @@ class ComposeActivity : AppCompatActivity(), OnSongClickListener {
     override fun onSaveInstanceState(outState: Bundle) {
 
         outState?.run {
-            putParcelable(STATE_SONG, currentSong)
+            putParcelable(STATE_SONG, currentGrocery)
         }
         super.onSaveInstanceState(outState)
     }
 
-    private fun getSongDetailFragment() = supportFragmentManager.findFragmentByTag(NowPlayingFragment.TAG) as? NowPlayingFragment
+    private fun getGroceryDetailFragment() = supportFragmentManager.findFragmentByTag(GroceryDetailsFragment.TAG) as? GroceryDetailsFragment
 
     override fun onSupportNavigateUp(): Boolean {
 
@@ -112,43 +89,29 @@ class ComposeActivity : AppCompatActivity(), OnSongClickListener {
         return super.onNavigateUp()
     }
 
-    fun nowPlaying(view: View) {
+    override fun onGroceryClicked(grocery:GroceryDetails) {
 
-        var miniPlayerComponent = findViewById<ConstraintLayout>(R.id.miniPlayerComponent)
-        miniPlayerComponent.visibility = View.GONE
-        var nowPlayingFragment = getSongDetailFragment()
+        currentGrocery = grocery
+        var groceryDetailsFragment = getGroceryDetailFragment()
 
-        if (nowPlayingFragment == null) {
+        if (groceryDetailsFragment == null) {
 
-            nowPlayingFragment = NowPlayingFragment()
+            groceryDetailsFragment = GroceryDetailsFragment()
             val argumentBundle = Bundle().apply {
-                putParcelable(NowPlayingFragment.ARG_SONG, currentSong)
+                putParcelable(GroceryDetailsFragment.ARG_GROCERY, currentGrocery)
             }
 
-            nowPlayingFragment.arguments = argumentBundle
+            groceryDetailsFragment.arguments = argumentBundle
 
             supportFragmentManager
                 .beginTransaction()
-                .add(R.id.fragContainer, nowPlayingFragment, NowPlayingFragment.TAG)
-                .addToBackStack(NowPlayingFragment.TAG)
+                .add(R.id.fragContainer, groceryDetailsFragment, GroceryDetailsFragment.TAG)
+                .addToBackStack(GroceryDetailsFragment.TAG)
                 .commit()
 
         } else {
-            nowPlayingFragment.updateSong(currentSong)
+            groceryDetailsFragment.updateGrocery(currentGrocery)
         }
     }
 
-    override fun onSongClicked(song:Song) {
-
-        currentSong = song
-        setMiniDisplay()
-    }
-
-    fun setMiniDisplay() {
-
-        if (currentSong != null) {
-            val miniPlayer = findViewById<TextView>(R.id.miniPlayer)
-            miniPlayer.text = "${currentSong!!.title} - ${currentSong!!.artist}"
-        }
-    }
 }

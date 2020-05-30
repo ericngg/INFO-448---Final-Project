@@ -7,10 +7,8 @@
     android:layout_height="match_parent"
     android:padding="@dimen/allsides_padding"
     android:background="@color/colorWhite"
-    tools:context=".fragment.NowPlayingFragment">
+    tools:context=".fragment.GroceryDetailsFragment">
 
-    <include layout="@layout/now_playing" />
-
-    <include layout="@layout/navigation" />
+    <include layout="@layout/grocery_details" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

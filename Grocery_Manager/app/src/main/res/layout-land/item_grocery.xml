@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="16dp"
+    >
+
+    <ImageView
+        android:id="@+id/ivGroceryImage"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
+        />
+
+    <TextView
+        android:id="@+id/quantity"
+        android:layout_width="35dp"
+        android:layout_height="55dp"
+        android:hint="Quantity of item"
+        android:textSize="23dp"
+        android:padding="3dp"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="@+id/ivGroceryImage"
+        app:layout_constraintStart_toEndOf="@+id/ivGroceryImage"
+        app:layout_constraintTop_toTopOf="@+id/ivGroceryImage" />
+
+    <TextView
+        android:id="@+id/itemName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Name of the grocery"
+        android:padding="3dp"
+        android:textAlignment="viewStart"
+        app:layout_constraintLeft_toRightOf="@id/quantity"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <TextView
+        android:id="@+id/expirationDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Expiration Date"
+        android:padding="3dp"
+        android:textAlignment="viewEnd"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/quantity"
+        app:layout_constraintTop_toBottomOf="@+id/itemName"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
