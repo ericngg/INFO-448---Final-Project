@@ -91,6 +91,7 @@
         app:layout_constraintTop_toBottomOf="@id/category" />
 
     <Button
+        android:onClick="submitData"
         android:id="@+id/confirmEdit"
         style="@android:style/TextAppearance.Small"
         android:layout_width="wrap_content"

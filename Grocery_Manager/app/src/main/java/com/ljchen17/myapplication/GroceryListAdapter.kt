@@ -8,16 +8,18 @@ import android.widget.Filterable
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.ljchen17.myapplication.model.GroceryDetails
+import com.ljchen17.myapplication.data.GroceryViewModel
+import com.ljchen17.myapplication.data.model.GroceryDetails
 import java.util.*
 import kotlin.collections.ArrayList
 
-class GroceryListAdapter(private var listOfGroceries: ArrayList<GroceryDetails>): RecyclerView.Adapter<GroceryListAdapter.GroceryViewHolder>(), Filterable{
+class GroceryListAdapter(val groceryViewModel: GroceryViewModel): RecyclerView.Adapter<GroceryListAdapter.GroceryViewHolder>(), Filterable{
 
-    var groceryFilterList = ArrayList<GroceryDetails>()
+    var groceryFilterList = emptyList<GroceryDetails>()
+    private var groceries = emptyList<GroceryDetails>() // Cached copy of words
 
     init {
-        groceryFilterList = listOfGroceries
+        groceryFilterList = groceries
     }
 
     var onGroceryClickListener: ((grocery: GroceryDetails) -> Unit)? = null
@@ -62,10 +64,10 @@ class GroceryListAdapter(private var listOfGroceries: ArrayList<GroceryDetails>)
             override fun performFiltering(constraint: CharSequence?): FilterResults {
                 val charSearch = constraint.toString()
                 if (charSearch.isEmpty()) {
-                    groceryFilterList = listOfGroceries
+                    groceryFilterList = groceries
                 } else {
                     val resultList = ArrayList<GroceryDetails>()
-                    for (row in listOfGroceries) {
+                    for (row in groceries) {
                         if (row.itemName.toLowerCase(Locale.ROOT).contains(charSearch.toLowerCase(Locale.ROOT))) {
                             resultList.add(row)
                         }
@@ -78,14 +80,24 @@ class GroceryListAdapter(private var listOfGroceries: ArrayList<GroceryDetails>)
             }
             @Suppress("UNCHECKED_CAST")
             override fun publishResults(constraint: CharSequence?, results: FilterResults?) {
-                groceryFilterList = results?.values as ArrayList<GroceryDetails>
+                if (results?.values is ArrayList<*>) {
+                    groceryFilterList = results?.values as ArrayList<GroceryDetails>
+                }
                 notifyDataSetChanged()
             }
         }
     }
+
     fun removeAt(position: Int) {
-        listOfGroceries.removeAt(position)
+        val itemToRemove = groceryFilterList[position]
+        groceryViewModel.deleteItem(itemToRemove)
         notifyItemRemoved(position)
+    }
+
+    internal fun setGroceries(groceries: List<GroceryDetails>) {
+        this.groceries = groceries
+        groceryFilterList = groceries
+        notifyDataSetChanged()
     }
 }
 

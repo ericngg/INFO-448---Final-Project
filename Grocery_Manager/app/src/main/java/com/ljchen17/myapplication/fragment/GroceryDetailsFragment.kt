@@ -5,9 +5,8 @@ import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
 import com.ljchen17.myapplication.R
-import com.ljchen17.myapplication.activity.ComposeActivity
 import com.ljchen17.myapplication.activity.EditActivity
-import com.ljchen17.myapplication.model.GroceryDetails
+import com.ljchen17.myapplication.data.model.GroceryDetails
 import kotlinx.android.synthetic.main.grocery_details.*
 import kotlin.random.Random
 
@@ -17,19 +16,17 @@ import kotlin.random.Random
  */
 class GroceryDetailsFragment : Fragment() {
 
-    var randomNumber = Random.nextInt(1000, 10000)
     private var grocery: GroceryDetails? = null
+    private val newGroceryActivityRequestCode = 1
 
     companion object {
 
         val TAG: String = GroceryDetailsFragment::class.java.simpleName
         const val ARG_GROCERY = "arg_grocery"
-        const val PLAY_TIMES = "play_times"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         setHasOptionsMenu(true);
 
         arguments?.let { args ->
@@ -57,14 +54,6 @@ class GroceryDetailsFragment : Fragment() {
         updateGroceryViews()
     }
 
-    override fun onSaveInstanceState(outState: Bundle) {
-
-        outState?.run {
-            putInt(PLAY_TIMES, randomNumber)
-        }
-        super.onSaveInstanceState(outState)
-    }
-
     private fun updateGroceryViews() {
         grocery?.let {
             itemName.text = grocery!!.itemName
@@ -75,9 +64,7 @@ class GroceryDetailsFragment : Fragment() {
         }
     }
 
-    override fun onCreateOptionsMenu(
-        menu: Menu?, inflater: MenuInflater
-    ) {
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.menu, menu)
     }
 
@@ -86,7 +73,7 @@ class GroceryDetailsFragment : Fragment() {
         if (item.itemId == R.id.action_edit) {
             val intent = Intent(context, EditActivity::class.java)
             intent.putExtra(EditActivity.ITEM_TO_EDIT, grocery)
-            startActivity(intent)
+            startActivityForResult(intent,newGroceryActivityRequestCode)
         }  else {
             super.onOptionsItemSelected(item)
         }

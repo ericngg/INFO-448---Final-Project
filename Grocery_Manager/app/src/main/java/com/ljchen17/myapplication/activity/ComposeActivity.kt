@@ -1,13 +1,13 @@
 package com.ljchen17.myapplication.activity
 
 import android.os.Bundle
+import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import com.ljchen17.myapplication.R
+import com.ljchen17.myapplication.data.model.GroceryDetails
 import com.ljchen17.myapplication.fragment.GroceryDetailsFragment
-import com.ljchen17.myapplication.fragment.OnGroceryClickListener
 import com.ljchen17.myapplication.fragment.GroceryListFragment
-import com.ljchen17.myapplication.model.GroceryDataProvider
-import com.ljchen17.myapplication.model.GroceryDetails
+import com.ljchen17.myapplication.fragment.OnGroceryClickListener
 
 
 class ComposeActivity : AppCompatActivity(), OnGroceryClickListener {
@@ -42,8 +42,8 @@ class ComposeActivity : AppCompatActivity(), OnGroceryClickListener {
         } else {
 
             val argumentBundle = Bundle().apply {
-                val groceryList = GroceryDataProvider.getAllGroceries()
-                putParcelableArrayList(GroceryListFragment.ARG_GROCERYLIST, ArrayList(groceryList))
+              //  val groceryList = (application as GroceryApplication).databaseManager.getItems()
+             //   putParcelableArrayList(GroceryListFragment.ARG_GROCERYLIST, ArrayList(groceryList))
             }
 
             val groceryListFragment = GroceryListFragment()
@@ -78,6 +78,7 @@ class ComposeActivity : AppCompatActivity(), OnGroceryClickListener {
     }
 
     private fun getGroceryDetailFragment() = supportFragmentManager.findFragmentByTag(GroceryDetailsFragment.TAG) as? GroceryDetailsFragment
+    private fun getListFragment() = supportFragmentManager.findFragmentByTag(GroceryListFragment.TAG) as? GroceryListFragment
 
     override fun onSupportNavigateUp(): Boolean {
 
@@ -86,6 +87,8 @@ class ComposeActivity : AppCompatActivity(), OnGroceryClickListener {
     }
 
     override fun onGroceryClicked(grocery:GroceryDetails) {
+
+        getListFragment()?.resetSearch()
 
         currentGrocery = grocery
         var groceryDetailsFragment = getGroceryDetailFragment()
@@ -110,4 +113,10 @@ class ComposeActivity : AppCompatActivity(), OnGroceryClickListener {
         }
     }
 
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.getItemId()) {
+            android.R.id.home -> onBackPressed()
+        }
+        return super.onOptionsItemSelected(item)
+    }
 }
