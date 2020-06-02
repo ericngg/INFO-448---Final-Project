@@ -1,7 +1,10 @@
 package com.ljchen17.myapplication.activity
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
@@ -95,6 +98,43 @@ class ComposeActivity : AppCompatActivity(), OnSongClickListener {
             }
         }
     }
+
+
+
+    // FINAL PROJECT
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    // FINAL PROJECT
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        val id = item.itemId
+
+        if (id == R.id.itemStatistic) {
+            startStatisticsActivity()
+        } else if (id == R.id.itemSettings) {
+            startSettingsActivity()
+        }
+
+        return super.onOptionsItemSelected(item)
+    }
+
+    // FINAL PROJECT
+    private fun startSettingsActivity() {
+        startActivity(Intent(this, SettingsActivity::class.java))
+    }
+
+    // FINAL PROJECT
+    private fun startStatisticsActivity() {
+        startActivity(Intent(this, StatisticsActivity::class.java))
+    }
+
+
+
+
+
+
 
     override fun onSaveInstanceState(outState: Bundle) {
 

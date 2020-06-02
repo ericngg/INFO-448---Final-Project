@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory
+        android:title="Alerts"
+        />
+
+        <Preference
+            android:key="text"
+            android:title="Notifications"
+            />
+
+    <PreferenceCategory
+        android:title="General"
+        />
+
+        <SwitchPreferenceCompat
+            android:key="switch_preference"
+            android:title="Dark Theme"
+            android:summary="Change the Theme"
+
+        />
+
+    <PreferenceCategory
+        android:key="expandable"
+        android:title="Display"
+        />
+
+        <SeekBarPreference
+            android:key="seekbar_preference"
+            android:title="Brightness Level"
+            android:summary="50%"
+        />
+
+
+</PreferenceScreen>
