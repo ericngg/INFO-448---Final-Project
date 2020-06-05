@@ -1,86 +1,52 @@
 package com.ljchen17.myapplication.activity
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.PersistableBundle
+import android.text.InputType
 import android.util.Log
-import androidx.preference.Preference
-import androidx.preference.PreferenceFragmentCompat
-import com.ljchen17.myapplication.MainPreference
+import androidx.appcompat.app.AppCompatActivity
+import androidx.preference.*
 import com.ljchen17.myapplication.R
 
-class SettingsActivity : AppCompatActivity(), PreferenceFragmentCompat.OnPreferenceStartFragmentCallback {
-
-    companion object  {
-        private val TAG = "SETTINGS_ACTIVITY"
-    }
+class SettingsActivity : AppCompatActivity(), Preference.OnPreferenceChangeListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_settings)
-
-        if(savedInstanceState == null) {
-            supportFragmentManager
-                .beginTransaction()
-                .replace(R.id.flSettingContent, MainPreference())
-                .commit()
-        } else {
-            title = savedInstanceState.getCharSequence(TAG)
-        }
-
-        supportFragmentManager.addOnBackStackChangedListener {
-            if (supportFragmentManager.backStackEntryCount == 0) {
-                title = "Settings"
-            }
-        }
-
-        setUpToolbar()
-    }
-
-    private fun setUpToolbar() {
-        supportActionBar?.title = "Settings"
+        setContentView(R.layout.settings_activity)
+        supportFragmentManager
+            .beginTransaction()
+            .replace(R.id.settings, SettingsFragment())
+            .commit()
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        supportActionBar?.setDisplayShowHomeEnabled(true)
-    }
-
-    override fun onSaveInstanceState(outState: Bundle, outPersistentState: PersistableBundle) {
-        super.onSaveInstanceState(outState, outPersistentState)
-        outState.putCharSequence(TAG, title)
     }
 
     override fun onSupportNavigateUp(): Boolean {
-        Log.i("test", "test")
-        supportFragmentManager.popBackStack()
-
-        return super.onSupportNavigateUp()
+        finish()
+        return super.onNavigateUp()
     }
 
 
+    class SettingsFragment : PreferenceFragmentCompat() {
+        override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
+            setPreferencesFromResource(R.xml.root_preferences, rootKey)
 
+            val phone: EditTextPreference? = findPreference("phoneNumber")
 
-    override fun onPreferenceStartFragment(
-        caller: PreferenceFragmentCompat?,
-        pref: Preference?
-    ): Boolean {
-        val arg = pref?.extras
-        val fragment = pref?.fragment?.let { frag ->
-            supportFragmentManager.fragmentFactory.instantiate(
-                classLoader, frag
-            ).apply {
-                arguments = arg
-                setTargetFragment(caller, 0)
+            phone?.setOnBindEditTextListener { editText ->
+                editText.inputType = InputType.TYPE_CLASS_NUMBER
+
             }
+
+
+
+
         }
 
-        fragment?.let { frag ->
-            supportFragmentManager.beginTransaction()
-                .replace(R.id.flSettingContent, frag)
-                .addToBackStack(TAG)
-                .commit()
-        }
+    }
 
-        title = pref?.title
+    override fun onPreferenceChange(preference: Preference?, newValue: Any?): Boolean {
+        Log.i("test", "$newValue")
+
+
         return true
-
     }
 }

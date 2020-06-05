@@ -10,6 +10,7 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.preference.PreferenceManager
 import com.ericchee.songdataprovider.Song
 import com.ericchee.songdataprovider.SongDataProvider
 import com.ljchen17.myapplication.R
@@ -27,6 +28,8 @@ class ComposeActivity : AppCompatActivity(), OnSongClickListener {
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        theme()
+
         super.onCreate(savedInstanceState)
         setContentView((R.layout.activity_compose))
 
@@ -128,6 +131,18 @@ class ComposeActivity : AppCompatActivity(), OnSongClickListener {
     // FINAL PROJECT
     private fun startStatisticsActivity() {
         startActivity(Intent(this, StatisticsActivity::class.java))
+    }
+
+
+    // FINAL PROJECT (THEME)
+    private fun theme() {
+        val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
+        val name = sharedPreferences.getBoolean("theme",  true)
+        if (name) {
+            setTheme(R.style.dark)
+        } else {
+            setTheme(R.style.AppTheme)
+        }
     }
 
 
