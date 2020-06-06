@@ -10,6 +10,7 @@ import kotlinx.android.parcel.Parcelize
 @Entity(tableName = "grocerydetails")
 data class GroceryDetails (
     @PrimaryKey var iid: Long,
+    @ColumnInfo(name = "image_path") val imagePath: String?,
     @ColumnInfo(name = "item_name") val itemName: String,
     @ColumnInfo(name = "quantity") val quantity: Int,
     @ColumnInfo(name = "expiration") val expiration: String,

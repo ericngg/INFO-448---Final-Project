@@ -66,4 +66,8 @@ dependencies {
 
     // UI
     implementation "com.google.android.material:material:$rootProject.materialVersion"
+
+    implementation 'com.karumi:dexter:6.1.2'
+
+    implementation 'com.squareup.picasso:picasso:2.71828'
 }

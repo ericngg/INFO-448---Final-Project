@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">Grocery Manager</string>
     <string name="empty_not_saved">Item has not been saved</string>
+    <string name="storage_permission_rationale_title">Storage Permissions Required</string>
+    <string name="storage_permition_rationale_message">Grocery Images Are Stored In Your Photos Folder</string>
+    <string name="storage_permission_denied_message">Storage Permissions Denied</string>
 
     <string-array name="category">
         <item>Vegetable</item>
