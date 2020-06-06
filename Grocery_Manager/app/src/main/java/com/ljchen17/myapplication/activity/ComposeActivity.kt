@@ -28,8 +28,8 @@ class ComposeActivity : AppCompatActivity(), OnSongClickListener {
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        // FINAL
         theme()
-
         super.onCreate(savedInstanceState)
         setContentView((R.layout.activity_compose))
 
@@ -126,6 +126,7 @@ class ComposeActivity : AppCompatActivity(), OnSongClickListener {
     // FINAL PROJECT
     private fun startSettingsActivity() {
         startActivity(Intent(this, SettingsActivity::class.java))
+        finish()
     }
 
     // FINAL PROJECT

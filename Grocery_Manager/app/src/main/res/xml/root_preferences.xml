@@ -7,6 +7,7 @@
             app:key="name"
             app:dialogMessage="Enter your name"
             app:enableCopying="true"
+            android:dialogLayout="@layout/pref_dialog_edittext"
             app:useSimpleSummaryProvider="true" />
 
         <EditTextPreference
@@ -15,6 +16,7 @@
             app:key="email"
             app:enableCopying="true"
             app:useSimpleSummaryProvider="true"
+            android:dialogLayout="@layout/pref_dialog_edittext"
             />
 
         <EditTextPreference
@@ -23,6 +25,7 @@
             app:key="phoneNumber"
             app:enableCopying="true"
             app:useSimpleSummaryProvider="true"
+            android:dialogLayout="@layout/pref_dialog_edittext"
             />
 
         <Preference
@@ -38,11 +41,15 @@
         <SwitchPreferenceCompat
             app:title="Push Notifications"
             app:key="notification"
+            android:summaryOff="disabled"
+            android:summaryOn="enabled"
             />
         <SwitchPreferenceCompat
             app:title="Show snooze options"
             app:dependency="notification"
             app:key="snooze"
+            android:summaryOff="disabled"
+            android:summaryOn="enabled"
             />
 
 
@@ -68,7 +75,23 @@
             android:action="android.intent.action.VIEW"
             android:data="https://github.com/ericngg/INFO-448---Final-Project" />
     </Preference>
+    <PreferenceCategory app:title="CRASH REPORT" />
+        <SwitchPreferenceCompat
+            app:title="Send crash report data"
+            android:summaryOff="disabled"
+            android:summaryOn="enabled" />
+    <PreferenceCategory app:title="ANALYTICS" />
+        <SwitchPreferenceCompat
+            app:title="Send usage data"
+            android:summaryOff="disabled"
+            android:summaryOn="enabled" />
+
+    <PreferenceCategory app:title="OTHER" />
 
     <Preference
-        app:title="Sign Out" />
+        app:title="Send Feedback" />
+
+    <Preference
+        app:title="Sign Out"
+        app:key="signout" />
 </PreferenceScreen>
