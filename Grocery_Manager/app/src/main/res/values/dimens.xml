@@ -4,4 +4,5 @@
     <dimen name="cover_width">300dp</dimen>
     <dimen name="cover_height">240dp</dimen>
     <dimen name="cover_margintop">50dp</dimen>
+    <dimen name="alert_def_padding">16dp</dimen>
 </resources>

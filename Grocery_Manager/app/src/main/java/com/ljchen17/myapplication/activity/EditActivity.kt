@@ -31,6 +31,7 @@ import java.io.File
 import java.text.SimpleDateFormat
 import java.util.*
 import java.util.jar.Manifest
+import android.preference.PreferenceManager
 
 class EditActivity : AppCompatActivity() {
 
@@ -46,6 +47,8 @@ class EditActivity : AppCompatActivity() {
     private var mCurrentPhotoPath: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        theme()
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit)
 
@@ -245,6 +248,16 @@ class EditActivity : AppCompatActivity() {
             setResult(Activity.RESULT_OK, replyIntent)
         }
         finish()
+    }
+
+    private fun theme() {
+        val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
+        val name = sharedPreferences.getBoolean("theme",  true)
+        if (name) {
+            setTheme(R.style.dark)
+        } else {
+            setTheme(R.style.AppTheme)
+        }
     }
 }
 

@@ -1,0 +1,98 @@
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory app:title="USER">
+        <EditTextPreference
+            app:title="Name"
+            app:key="name"
+            app:dialogMessage="Enter your name"
+            app:enableCopying="true"
+            android:dialogLayout="@layout/pref_dialog_edittext"
+            app:useSimpleSummaryProvider="true" />
+
+        <EditTextPreference
+            app:title="Email"
+            app:dialogMessage="Enter your email"
+            app:key="email"
+            app:enableCopying="true"
+            app:useSimpleSummaryProvider="true"
+            android:dialogLayout="@layout/pref_dialog_edittext"
+            />
+
+        <EditTextPreference
+            app:title="Phone Number"
+            app:dialogMessage="Enter your phone number"
+            app:key="phoneNumber"
+            app:enableCopying="true"
+            app:useSimpleSummaryProvider="true"
+            android:dialogLayout="@layout/pref_dialog_edittext"
+            />
+
+        <Preference
+            app:title="Profile Key"
+            app:defaultValue="u3pl3O6DXv"
+            app:key="profile"
+            app:summary="u3pl3O6DXv"
+            app:enableCopying="true"
+            />
+    </PreferenceCategory>
+
+    <PreferenceCategory app:title="NOTIFICATION">
+        <SwitchPreferenceCompat
+            app:title="Push Notifications"
+            app:key="notification"
+            android:summaryOff="disabled"
+            android:summaryOn="enabled"
+            />
+        <SwitchPreferenceCompat
+            app:title="Show snooze options"
+            app:dependency="notification"
+            app:key="snooze"
+            android:summaryOff="disabled"
+            android:summaryOn="enabled"
+            />
+
+
+    </PreferenceCategory>
+
+    <PreferenceCategory app:title="CUSTOM" />
+    <SwitchPreferenceCompat
+        app:title="Dark Mode"
+        app:key="theme"
+        android:summaryOff="Off"
+        app:summaryOn="On"
+        />
+
+    <PreferenceCategory app:title="PRIVACY">
+        <SwitchPreferenceCompat
+            app:title="Show Activity" />
+    </PreferenceCategory>
+
+    <Preference
+        app:title="About"
+        app:summary="Version 1.0" >
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:data="https://github.com/ericngg/INFO-448---Final-Project" />
+    </Preference>
+    <PreferenceCategory app:title="CRASH REPORT" />
+    <SwitchPreferenceCompat
+        app:title="Send crash report data"
+        android:summaryOff="disabled"
+        android:summaryOn="enabled" />
+    <PreferenceCategory app:title="ANALYTICS" />
+    <SwitchPreferenceCompat
+        app:title="Send usage data"
+        android:summaryOff="disabled"
+        android:summaryOn="enabled" />
+
+    <PreferenceCategory app:title="OTHER" />
+
+    <Preference
+        app:title="Send Feedback" />
+
+    <Preference
+        app:title="Sign Out"
+        app:key="signout" />
+
+</PreferenceScreen>

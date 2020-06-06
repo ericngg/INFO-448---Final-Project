@@ -1,6 +1,9 @@
 package com.ljchen17.myapplication.activity
 
+import android.content.Intent
 import android.os.Bundle
+import android.preference.PreferenceManager
+import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import com.ljchen17.myapplication.R
@@ -19,6 +22,8 @@ class ComposeActivity : AppCompatActivity(), OnGroceryClickListener {
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        theme()
+
         super.onCreate(savedInstanceState)
         setContentView((R.layout.activity_compose))
 
@@ -114,9 +119,45 @@ class ComposeActivity : AppCompatActivity(), OnGroceryClickListener {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.getItemId()) {
+        val id = item.itemId
+
+        if (id == R.id.itemStatistic) {
+            startStatisticsActivity()
+        } else if (id == R.id.itemSettings) {
+            startSettingsActivity()
+        }
+
+        when(id) {
             android.R.id.home -> onBackPressed()
         }
+
         return super.onOptionsItemSelected(item)
     }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    // FINAL PROJECT
+    private fun startSettingsActivity() {
+        startActivity(Intent(this, SettingsActivity::class.java))
+        finish()
+    }
+
+    // FINAL PROJECT
+    private fun startStatisticsActivity() {
+        startActivity(Intent(this, StatisticsActivity::class.java))
+    }
+
+    private fun theme() {
+        val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
+        val name = sharedPreferences.getBoolean("theme",  true)
+        if (name) {
+            setTheme(R.style.dark)
+        } else {
+            setTheme(R.style.AppTheme)
+        }
+    }
+
 }
