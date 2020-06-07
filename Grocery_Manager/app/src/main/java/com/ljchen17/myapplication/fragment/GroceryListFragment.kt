@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,6 +17,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.ljchen17.myapplication.GroceryApplication
 import com.ljchen17.myapplication.GroceryListAdapter
 import com.ljchen17.myapplication.R
 import com.ljchen17.myapplication.SwipeToDeleteCallback
@@ -36,6 +38,7 @@ class GroceryListFragment : Fragment() {
     private var OnGroceryClickListener: OnGroceryClickListener? = null
     private lateinit var groceryViewModel: GroceryViewModel
     private val newGroceryActivityRequestCode = 1
+    private lateinit var GApp: GroceryApplication
 
     companion object {
         val TAG: String = GroceryListFragment::class.java.simpleName
@@ -46,6 +49,7 @@ class GroceryListFragment : Fragment() {
         if (context is OnGroceryClickListener) {
             OnGroceryClickListener = context
         }
+        GApp = context.applicationContext as GroceryApplication
     }
 
     override fun onCreateView(
@@ -68,7 +72,9 @@ class GroceryListFragment : Fragment() {
         // in the foreground.
         groceryViewModel.allGroceries.observe((context as AppCompatActivity), Observer { groceries ->
             // Update the cached copy of the words in the adapter.
-            groceries?.let { adapter.setGroceries(it) }
+            groceries?.let { adapter.setGroceries(it)
+                             GApp.allGroceries = it
+                             GApp.startNotify()}
         })
 
         adapter = GroceryListAdapter(groceryViewModel)
@@ -82,7 +88,8 @@ class GroceryListFragment : Fragment() {
         itemTouchHelper.attachToRecyclerView(rvGrocery)
 
         addItemBtn.setOnClickListener {
-
+           // Log.i("echee", GApp.allGroceries.toString())
+//            GApp.test(GApp.allGroceries[0].expiration)
             resetSearch()
             val intent = Intent(context, EditActivity::class.java)
             startActivityForResult(intent,newGroceryActivityRequestCode)
@@ -105,8 +112,14 @@ class GroceryListFragment : Fragment() {
 
         rvGrocery.adapter = adapter
         rvGrocery.setHasFixedSize(true)
+
+        // startNotification
+//        startNT()
     }
 
+//    private fun startNT() {
+//        GApp.startNotify()
+//    }
     public fun resetSearch() {
         grocery_search.setQuery("", false);
         grocery_search.clearFocus();
