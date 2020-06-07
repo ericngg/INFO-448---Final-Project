@@ -16,5 +16,4 @@
         android:title="Text to be seen by user"
         app:showAsAction="always"
         android:orderInCategory="0"/>
-
 </menu>
