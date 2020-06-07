@@ -65,7 +65,7 @@ class GroceryDetailsFragment : Fragment() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.menu, menu)
+        inflater.inflate(R.menu.editmenu, menu)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

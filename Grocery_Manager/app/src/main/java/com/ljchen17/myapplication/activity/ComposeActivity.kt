@@ -1,10 +1,12 @@
 package com.ljchen17.myapplication.activity
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.preference.PreferenceManager
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import com.ljchen17.myapplication.R
 import com.ljchen17.myapplication.data.model.GroceryDetails
@@ -150,6 +152,7 @@ class ComposeActivity : AppCompatActivity(), OnGroceryClickListener {
         startActivity(Intent(this, StatisticsActivity::class.java))
     }
 
+    @SuppressLint("ResourceAsColor")
     private fun theme() {
         val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
         val name = sharedPreferences.getBoolean("theme",  true)
