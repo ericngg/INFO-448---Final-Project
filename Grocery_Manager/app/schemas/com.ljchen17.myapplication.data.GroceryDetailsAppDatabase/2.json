@@ -1,0 +1,70 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 2,
+    "identityHash": "758349d0c499bf91c5de6d37fc7f0844",
+    "entities": [
+      {
+        "tableName": "grocerydetails",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`iid` INTEGER NOT NULL, `image_path` TEXT, `item_name` TEXT NOT NULL, `quantity` INTEGER NOT NULL, `expiration` TEXT NOT NULL, `category` TEXT NOT NULL, `description` TEXT NOT NULL, PRIMARY KEY(`iid`))",
+        "fields": [
+          {
+            "fieldPath": "iid",
+            "columnName": "iid",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "imagePath",
+            "columnName": "image_path",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "itemName",
+            "columnName": "item_name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "quantity",
+            "columnName": "quantity",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "expiration",
+            "columnName": "expiration",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "category",
+            "columnName": "category",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "description",
+            "columnName": "description",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "iid"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": []
+      }
+    ],
+    "views": [],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '758349d0c499bf91c5de6d37fc7f0844')"
+    ]
+  }
+}
