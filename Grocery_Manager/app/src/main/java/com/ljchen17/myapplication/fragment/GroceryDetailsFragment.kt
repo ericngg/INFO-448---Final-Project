@@ -1,13 +1,21 @@
 package com.ljchen17.myapplication.fragment
 
+import android.app.Activity
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.*
+import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import com.ljchen17.myapplication.R
+import com.ljchen17.myapplication.activity.ComposeActivity
 import com.ljchen17.myapplication.activity.EditActivity
+import com.ljchen17.myapplication.data.GroceryViewModel
 import com.ljchen17.myapplication.data.model.GroceryDetails
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.grocery_details.*
+import java.io.File
 import kotlin.random.Random
 
 
@@ -61,6 +69,13 @@ class GroceryDetailsFragment : Fragment() {
             category.text = "Category: " + grocery!!.category
             expirationDate?.text = "Expiration Date: " + grocery!!.expiration
             description?.text = "Note: \n" + grocery!!.description
+
+            val imagePath = grocery!!.imagePath
+            if (imagePath != null) {
+                val file = File(imagePath)
+                val uri = Uri.fromFile(file)
+                Picasso.get().load(uri).into(cover)
+            }
         }
     }
 
@@ -79,4 +94,36 @@ class GroceryDetailsFragment : Fragment() {
         }
         return true
     }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, intentData: Intent?) {
+        super.onActivityResult(requestCode, resultCode, intentData)
+
+        if (requestCode == newGroceryActivityRequestCode && resultCode == Activity.RESULT_OK) {
+            intentData?.let { data ->
+                val grocery = data.getParcelableExtra(EditActivity.EXTRA_REPLY) as GroceryDetails
+                // Get a new or existing ViewModel from the ViewModelProvider.
+                val groceryViewModel = ViewModelProvider(context as ComposeActivity).get(
+                    GroceryViewModel::class.java)
+
+                if (grocery.iid == (-1).toLong()){
+                    var random = kotlin.random.Random
+                    grocery.iid = random.nextLong(Long.MAX_VALUE)
+                    groceryViewModel.newItem(grocery)
+                } else {
+                    groceryViewModel.updateItem(grocery)
+                }
+                updateGrocery(grocery)
+
+                Unit
+            }
+        } else {
+            Toast.makeText(
+                context,
+                R.string.empty_not_saved,
+                Toast.LENGTH_LONG
+            ).show()
+        }
+    }
+
+
 }
