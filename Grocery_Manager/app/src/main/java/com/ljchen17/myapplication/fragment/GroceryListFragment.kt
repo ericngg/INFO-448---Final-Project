@@ -28,6 +28,7 @@ import com.ljchen17.myapplication.activity.ComposeActivity
 import com.ljchen17.myapplication.activity.EditActivity
 import com.ljchen17.myapplication.data.GroceryViewModel
 import com.ljchen17.myapplication.data.model.GroceryDetails
+import com.muddzdev.styleabletoast.StyleableToast
 import kotlinx.android.synthetic.main.fragment_grocery_list.*
 import java.util.*
 import kotlin.random.Random.Default.nextLong
@@ -183,14 +184,17 @@ class GroceryListFragment : Fragment() {
                 } else {
                     groceryViewModel.updateItem(grocery)
                 }
+
+                context?.let { cont ->
+                    StyleableToast.makeText(cont, "Item has been saved", Toast.LENGTH_LONG, R.style.saved).show()
+                }
+
                 Unit
             }
         } else {
-            Toast.makeText(
-                context,
-                R.string.empty_not_saved,
-                Toast.LENGTH_LONG
-            ).show()
+            context?.let { cont ->
+                StyleableToast.makeText(cont, "Item has not been saved", Toast.LENGTH_LONG, R.style.notSaved).show()
+            }
         }
     }
 
