@@ -3,12 +3,10 @@ package com.ljchen17.myapplication.activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.os.Handler
 import android.text.InputType
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.preference.*
-import com.ljchen17.myapplication.FeedbackActivity
 import com.ljchen17.myapplication.R
 import com.muddzdev.styleabletoast.StyleableToast
 import java.util.*
