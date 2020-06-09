@@ -32,5 +32,6 @@
     </string>
     <string name="attachment_summary_off">Only download attachments when manually requested</string>
     <string name="graphTitle">Types of Expired Food</string>
+    <string name="foodWasteTitle">Most Common Type of Food Wasted</string>
 
 </resources>

@@ -16,6 +16,8 @@ import com.ljchen17.myapplication.R
 import com.ljchen17.myapplication.data.GroceryViewModel
 import com.ljchen17.myapplication.data.model.GroceryDetails
 import kotlinx.android.synthetic.main.activity_statistics.*
+import java.text.SimpleDateFormat
+import java.util.*
 
 class StatisticsActivity : AppCompatActivity() {
 
@@ -72,9 +74,17 @@ class StatisticsActivity : AppCompatActivity() {
 //        AAChartView?.aa_drawChartWithChartModel(aaChartModel)
     }
 
+    @SuppressLint("SimpleDateFormat")
     private fun updateGraph(rawData: List<GroceryDetails>): Array<Any> {
+        val expired = mutableListOf<GroceryDetails>()
+        for(entry in rawData) {
+            if(Date().after(Date(entry.expiration))) {
+                expired.add(entry)
+            }
+        }
+
         val dataCategories = linkedMapOf<String, Int>()
-        for (entry in rawData) {
+        for (entry in expired) {
             if(dataCategories.containsKey(entry.category)) {
                 val newValue = dataCategories.getValue(entry.category) + entry.quantity
                 dataCategories[entry.category] = newValue
@@ -83,11 +93,17 @@ class StatisticsActivity : AppCompatActivity() {
             }
         }
 
+        var mostFoodWaste = Pair<String, Int>("", 0)
         val formattedData = mutableListOf<Array<Any>>()
         for (entry in dataCategories) {
             formattedData.add(arrayOf(entry.key, entry.value))
+
+            if(entry.value > mostFoodWaste.second) {
+                mostFoodWaste = Pair<String, Int>(entry.key, entry.value)
+            }
         }
 
+        tvWastedFood.text = mostFoodWaste.first
         return formattedData.toTypedArray()
     }
 

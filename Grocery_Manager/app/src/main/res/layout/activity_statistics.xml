@@ -29,4 +29,30 @@
         app:layout_constraintRight_toRightOf="parent"
         />
 
+    <TextView
+        android:id="@+id/tvFoodWasteTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/AAChartView"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/tvWastedFood"
+        android:text="@string/foodWasteTitle"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:textAlignment="center"/>
+
+    <TextView
+        android:id="@+id/tvWastedFood"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/tvFoodWasteTitle"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:text="Deli"
+        android:textColor="@color/white"
+        android:textSize="30sp"
+        android:textAlignment="center"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
