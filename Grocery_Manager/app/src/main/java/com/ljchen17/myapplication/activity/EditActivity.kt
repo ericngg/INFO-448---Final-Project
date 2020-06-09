@@ -32,6 +32,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 import java.util.jar.Manifest
 import android.preference.PreferenceManager
+import com.ljchen17.myapplication.GroceryApplication
 
 class EditActivity : AppCompatActivity() {
 
@@ -44,6 +45,8 @@ class EditActivity : AppCompatActivity() {
 
     private val TAKE_PHOTO_REQUEST = 101
     private var mCurrentPhotoPath: String = ""
+
+    lateinit var GApp: GroceryApplication
 
     override fun onCreate(savedInstanceState: Bundle?) {
         theme()
@@ -247,6 +250,7 @@ class EditActivity : AppCompatActivity() {
             replyIntent.putExtra(EXTRA_REPLY, item)
             setResult(Activity.RESULT_OK, replyIntent)
         }
+        GApp.notifiable = true
         finish()
     }
 

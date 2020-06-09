@@ -3,6 +3,11 @@
   <component name="WizardSettings">
     <option name="children">
       <map>
+        <entry key="imageWizard">
+          <value>
+            <PersistentState />
+          </value>
+        </entry>
         <entry key="vectorWizard">
           <value>
             <PersistentState>
@@ -18,7 +23,11 @@
                                 <PersistentState>
                                   <option name="values">
                                     <map>
+<<<<<<< HEAD
                                       <entry key="url" value="jar:file:/C:/Program%20Files/Android/Android%20Studio/plugins/android/lib/android.jar!/images/material_design_icons/navigation/ic_check_black_24dp.xml" />
+=======
+                                      <entry key="url" value="jar:file:/D:/Android/Android%20Studio/plugins/android/lib/android.jar!/images/material_design_icons/maps/ic_restaurant_menu_black_24dp.xml" />
+>>>>>>> Notification
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -28,8 +37,13 @@
                         </option>
                         <option name="values">
                           <map>
+<<<<<<< HEAD
                             <entry key="color" value="ffffff" />
                             <entry key="outputName" value="ic_check_black_24dp" />
+=======
+                            <entry key="color" value="ff1a1f" />
+                            <entry key="outputName" value="ic_restaurant_menu_black_24dp" />
+>>>>>>> Notification
                             <entry key="sourceFile" value="C:\Users\EricN" />
                           </map>
                         </option>
