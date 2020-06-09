@@ -63,9 +63,6 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 
-    //WorkManager
-    implementation "androidx.work:work-runtime-ktx:2.3.4"
-
     // Room components
     implementation "androidx.room:room-runtime:$rootProject.roomVersion"
     kapt "androidx.room:room-compiler:$rootProject.roomVersion"
@@ -93,4 +90,7 @@ dependencies {
     implementation 'com.karumi:dexter:6.1.2'
 
     implementation 'com.squareup.picasso:picasso:2.71828'
+
+    //data visualization
+    implementation 'com.google.code.gson:gson:2.8.6'
 }
