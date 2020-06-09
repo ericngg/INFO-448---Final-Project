@@ -7,9 +7,11 @@ import android.preference.PreferenceManager
 import android.util.Log
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import com.aachartmodel.aainfographics.AAInfographicsLib.AAChartCreator.AAChartFontWeightType
 import com.aachartmodel.aainfographics.AAInfographicsLib.AAChartCreator.AAChartModel
 import com.aachartmodel.aainfographics.AAInfographicsLib.AAChartCreator.AAChartType
 import com.aachartmodel.aainfographics.AAInfographicsLib.AAChartCreator.AASeriesElement
+import com.aachartmodel.aainfographics.AAInfographicsLib.AAOptionsModel.AAChart
 import com.ljchen17.myapplication.R
 import com.ljchen17.myapplication.data.GroceryViewModel
 import com.ljchen17.myapplication.data.model.GroceryDetails
@@ -30,9 +32,15 @@ class StatisticsActivity : AppCompatActivity() {
         // Create the observer which updates the UI.
         val statsObserver = Observer<List<GroceryDetails>> { newData ->
             val aaChartModel = AAChartModel()
-                .chartType(AAChartType.Column)
-                .title("Types of Food")
-                .series(updateGraph(newData))
+                .chartType(AAChartType.Pie)
+                .backgroundColor("#303030")
+                .titleFontColor("#ffffff")
+                .axesTextColor("#ffffff")
+                .colorsTheme(arrayOf("#E1162E"))
+                .tooltipEnabled(false)
+                .tooltipCrosshairs(false)
+                .legendEnabled(false)
+                .series(arrayOf(AASeriesElement().data(updateGraph(newData))))
 
             AAChartView?.aa_drawChartWithChartModel(aaChartModel)
 
@@ -43,47 +51,84 @@ class StatisticsActivity : AppCompatActivity() {
         viewModel.allGroceries.observe(this, statsObserver)
 
 //        val aaChartModel = AAChartModel()
-//            .chartType(AAChartType.Area)
-//            .title("title")
+//            .chartType(AAChartType.Pie)
+//            .title("Types of Expired Food")
 //            .subtitle("subtitle")
-//            .backgroundColor("#4b2b7f")
-//            .yAxisGridLineWidth(0F)
+//            .backgroundColor("#303030")
+//            .titleFontColor("#ffffff")
+//            .axesTextColor("#ffffff")
+//            .subtitleFontColor("#ffffff")
+//            .tooltipEnabled(false)
+//            .tooltipCrosshairs(false)
+//            .legendEnabled(false)
+//            .colorsTheme(arrayOf("#E1162E"))
 //            .series(arrayOf(
 //                AASeriesElement()
-//                    .name("Tokyo")
-//                    .data(arrayOf(7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6)),
-//                AASeriesElement()
-//                    .name("NewYork")
-//                    .data(arrayOf(0.2, 0.8, 5.7, 11.3, 17.0, 22.0, 24.8, 24.1, 20.1, 14.1, 8.6, 2.5)),
-//                AASeriesElement()
-//                    .name("London")
-//                    .data(arrayOf(0.9, 0.6, 3.5, 8.4, 13.5, 17.0, 18.6, 17.9, 14.3, 9.0, 3.9, 1.0)),
-//                AASeriesElement()
-//                    .name("Berlin")
-//                    .data(arrayOf(3.9, 4.2, 5.7, 8.5, 11.9, 15.2, 17.0, 16.6, 14.2, 10.3, 6.6, 4.8))
+//                    .data(arrayOf(arrayOf("Grain", 6.9),
+//                                  arrayOf("Deli", 0.8)))
 //            )
 //            )
+//
+//        AAChartView?.aa_drawChartWithChartModel(aaChartModel)
     }
 
-    private fun updateGraph(rawData: List<GroceryDetails>): Array<AASeriesElement> {
-        val dataCategories = linkedMapOf<String, Float>()
+    private fun updateGraph(rawData: List<GroceryDetails>): Array<Any> {
+        val dataCategories = linkedMapOf<String, Int>()
         for (entry in rawData) {
             if(dataCategories.containsKey(entry.category)) {
                 val newValue = dataCategories.getValue(entry.category) + entry.quantity
                 dataCategories[entry.category] = newValue
             } else {
-                val float = entry.quantity + 0F
-                dataCategories[entry.category] = (float)
+                dataCategories[entry.category] = (entry.quantity)
             }
         }
 
-        val seriesElements = mutableListOf<AASeriesElement>()
+        val formattedData = mutableListOf<Array<Any>>()
         for (entry in dataCategories) {
-            seriesElements.add(AASeriesElement().name(entry.key).data(arrayOf(entry.value)))
+            formattedData.add(arrayOf(entry.key, entry.value))
         }
 
-        return seriesElements.toTypedArray()
+        return formattedData.toTypedArray()
     }
+
+
+//    private fun updateGraph(rawData: List<GroceryDetails>): Array<AASeriesElement> {
+//        val dataCategories = linkedMapOf<String, Float>()
+//        for (entry in rawData) {
+//            if(dataCategories.containsKey(entry.category)) {
+//                val newValue = dataCategories.getValue(entry.category) + entry.quantity
+//                dataCategories[entry.category].
+//            } else {
+//                dataCategories[entry.category] = entry.quantity + 0F
+//            }
+//        }
+//
+//        val seriesElements = mutableListOf<AASeriesElement>()
+//        for (entry in dataCategories) {
+//            seriesElements.add(AASeriesElement().name(entry.key).data(arrayOf(entry.key, entry.value)))
+//        }
+//
+//        return seriesElements.toTypedArray()
+//    }
+
+//    private fun updateGraph(rawData: List<GroceryDetails>): Array<AASeriesElement> {
+//        val dataCategories = linkedMapOf<String, Int>()
+//        for (entry in rawData) {
+//            if(dataCategories.containsKey(entry.category)) {
+//                val newValue = dataCategories.getValue(entry.category) + entry.quantity
+//                dataCategories[entry.category] = newValue
+//            } else {
+//                dataCategories[entry.category] = (entry.quantity)
+//            }
+//        }
+//
+//        val seriesElements = mutableListOf<AASeriesElement>()
+//        for (entry in dataCategories) {
+//            seriesElements.add(AASeriesElement().name(entry.key).data(arrayOf(entry.value)))
+//        }
+//
+//        return seriesElements.toTypedArray()
+//    }
 
     @SuppressLint("ResourceAsColor")
     private fun theme() {
