@@ -27,6 +27,7 @@
         app:fabSize="normal"
         app:layout_constraintRight_toRightOf="parent"
         app:srcCompat="@drawable/ic_add_a_photo_black"
+        app:tint="?android:attr/textColor"
         app:layout_constraintTop_toTopOf="parent"
         />
 
