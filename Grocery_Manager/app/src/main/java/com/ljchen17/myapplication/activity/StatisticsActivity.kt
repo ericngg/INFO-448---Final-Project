@@ -15,35 +15,6 @@ class StatisticsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_statistics)
 
-        //addMockData(db.groceryDetailsDao())
-        val test = db.groceryDetailsDao().getAll().value
-        if(test != null) {
-            Log.i("database42", test[0].toString())
-        } else {
-            Log.i("database42", "null")
-        }
-    }
 
-    override fun onDestroy() {
-        super.onDestroy()
-
-        val test = db.groceryDetailsDao().getAll().value
-        if(test != null) {
-            Log.i("database42", test[0].toString())
-        } else {
-            Log.i("database42", "null")
-        }
-
-        removeMockData(db.groceryDetailsDao())
-    }
-
-    private fun addMockData(groceryDao: GroceryDetailsDao) {
-        groceryDao.insert(mockData)
-        Log.i("database42", db.groceryDetailsDao().getAll().value?.get(0).toString())
-    }
-
-    private fun removeMockData(groceryDao: GroceryDetailsDao) {
-        groceryDao.delete(mockData)
-        Log.i("database42", db.groceryDetailsDao().getAll().value?.get(0).toString())
     }
 }
