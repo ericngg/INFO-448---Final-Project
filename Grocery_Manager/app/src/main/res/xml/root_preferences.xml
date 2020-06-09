@@ -7,7 +7,6 @@
             app:key="name"
             app:dialogMessage="Enter your name"
             app:enableCopying="true"
-            app:icon="@drawable/ic_person_outline_black_24dp"
             android:dialogLayout="@layout/pref_dialog_edittext"
             app:useSimpleSummaryProvider="true" />
 
@@ -15,7 +14,6 @@
             app:title="Email"
             app:dialogMessage="Enter your email"
             app:key="email"
-            android:icon="@drawable/ic_email_black_24dp"
             app:enableCopying="true"
             app:useSimpleSummaryProvider="true"
             android:dialogLayout="@layout/pref_dialog_edittext"
@@ -25,7 +23,6 @@
             app:title="Phone Number"
             app:dialogMessage="Enter your phone number"
             app:key="phoneNumber"
-            app:icon="@drawable/ic_phone_black_24dp"
             app:enableCopying="true"
             app:useSimpleSummaryProvider="true"
             android:dialogLayout="@layout/pref_dialog_edittext"
@@ -35,7 +32,6 @@
             app:title="Profile Key"
             app:defaultValue="u3pl3O6DXv"
             app:key="profile"
-            app:icon="@drawable/ic_vpn_key_black_24dp"
             app:summary="u3pl3O6DXv"
             app:enableCopying="true"
             />
@@ -45,7 +41,6 @@
         <SwitchPreferenceCompat
             app:title="Push Notifications"
             app:key="notification"
-            android:icon="@drawable/ic_notifications_none_black_24dp"
             android:summaryOff="disabled"
             android:summaryOn="enabled"
             />
@@ -83,25 +78,21 @@
     <PreferenceCategory app:title="CRASH REPORT" />
     <SwitchPreferenceCompat
         app:title="Send crash report data"
-        app:icon="@drawable/ic_warning_black_24dp"
         android:summaryOff="disabled"
         android:summaryOn="enabled" />
     <PreferenceCategory app:title="ANALYTICS" />
     <SwitchPreferenceCompat
         app:title="Send usage data"
-        android:icon="@drawable/ic_data_usage_black_24dp"
         android:summaryOff="disabled"
         android:summaryOn="enabled" />
 
     <PreferenceCategory app:title="OTHER" />
 
     <Preference
-        app:title="Send Feedback"
-        app:key="feedback" />
+        app:title="Send Feedback" />
 
     <Preference
         app:title="Sign Out"
-        app:icon="@drawable/ic_exit_to_app_black_24dp"
         app:key="signout" />
 
 </PreferenceScreen>

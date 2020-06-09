@@ -22,6 +22,7 @@ class GroceryNotificationManager(private val context: Context) {
 
     init {
         createFunChannel()
+        createChannel()
     }
 
     fun sendNotification(grocery: GroceryDetails) {
@@ -47,6 +48,26 @@ class GroceryNotificationManager(private val context: Context) {
         notificationManagerCompat.notify(Random.nextInt(), notification)
     }
 
+    fun postMessages(message: String) {
+        val intent = Intent(context, ComposeActivity::class.java).apply {
+            flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        }
+
+        val pendingIntent = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT)
+
+        val notification = NotificationCompat.Builder(context, CHANNEL_ID)
+            .setSmallIcon(R.drawable.ic_restaurant_menu_black_24dp)
+            .setContentTitle("Hi there,")
+            .setContentText(message)
+            .setCategory(NotificationCompat.CATEGORY_MESSAGE)
+            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+            .setContentIntent(pendingIntent)
+            .setAutoCancel(true)
+            .build()
+
+        notificationManagerCompat.notify(Random.nextInt(), notification)
+    }
+
     private fun createFunChannel() {
         // Create the NotificationChannel, but only on API 26+ because
         // the NotificationChannel class is new and not in the support library
@@ -61,8 +82,22 @@ class GroceryNotificationManager(private val context: Context) {
         }
     }
 
-//    companion object {
-//        const val CHANNEL_ID = "CHANNEL_ID"
-//    }
+    private fun createChannel() {
+        // Create the NotificationChannel, but only on API 26+ because
+        // the NotificationChannel class is new and not in the support library
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val name = "Notifications of https suggestions"
+            val descriptionText = "Greet to our users"
+            val importance = NotificationManager.IMPORTANCE_DEFAULT
+            val channel = NotificationChannel(CHANNEL_ID, name, importance).apply {
+                description = descriptionText
+            }
+            notificationManagerCompat.createNotificationChannel(channel)
+        }
+    }
+
+    companion object {
+        const val CHANNEL_ID = "CHANNEL_ID"
+    }
 
 }

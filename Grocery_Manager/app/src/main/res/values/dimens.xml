@@ -5,11 +5,4 @@
     <dimen name="cover_height">240dp</dimen>
     <dimen name="cover_margintop">50dp</dimen>
     <dimen name="alert_def_padding">16dp</dimen>
-    <dimen name="padding">20dp</dimen>
-    <dimen name="buttonTextSize">20sp</dimen>
-    <dimen name="submitTopMargin">35dp</dimen>
-    <dimen name="submitHeight">60dp</dimen>
-    <dimen name="etMarginTop">30dp</dimen>
-    <dimen name="etHeight">460dp</dimen>
-    <dimen name="feedbackTitle">40sp</dimen>
 </resources>

@@ -8,41 +8,22 @@
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:textColor">@color/black</item>
         <item name="android:textColorSecondary">@color/black</item>
-        <item name="colorSurface">@color/white</item>
     </style>
 
     <style name="dark" parent="Theme.AppCompat">
         <item name="colorPrimary">@color/darkPrimary</item>
         <item name="colorPrimaryDark">@color/black</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <item name="colorSurface">@color/black</item>
-        <item name="android:textColor">@color/white</item>
-        <item name="android:textColorSecondary">@color/white</item>
+        <item name="android:textColor">#ffffff</item>
+        <item name="android:textColorSecondary">#ffffff</item>
         <item name="android:backgroundTint">@color/background</item>
+        <item name="android:buttonTint">@color/background</item>
     </style>
 
     <style name="themeToast">
-        <item name="stColorBackground">@color/salmon</item>
-        <item name="stTextColor">@color/white</item>
+        <item name="stColorBackground">#FF5E64</item>
+        <item name="stTextColor">#ffffff</item>
         <item name="stIconStart">@drawable/ic_sync_black_24dp</item>
-    </style>
-
-    <style name="quitToast">
-        <item name="stColorBackground">@color/colorAccent</item>
-        <item name="stTextColor">@color/white</item>
-        <item name="stIconStart">@drawable/exit_white</item>
-    </style>
-
-    <style name="notSaved">
-        <item name="stColorBackground">@color/colorAccent</item>
-        <item name="stTextColor">@color/white</item>
-        <item name="stIconStart">@drawable/ic_clear_black_24dp</item>
-    </style>
-
-    <style name="saved">
-        <item name="stColorBackground">@color/green</item>
-        <item name="stTextColor">@color/white</item>
-        <item name="stIconStart">@drawable/ic_check_black_24dp</item>
     </style>
 
 </resources>

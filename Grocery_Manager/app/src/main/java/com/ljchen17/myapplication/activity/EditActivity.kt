@@ -42,6 +42,7 @@ class EditActivity : AppCompatActivity() {
     var imagePath:String? = null
 
     var editContainer: ConstraintLayout? = null
+    var fabCapturePhoto: FloatingActionButton? = null
 
     private val TAKE_PHOTO_REQUEST = 101
     private var mCurrentPhotoPath: String = ""
@@ -54,7 +55,9 @@ class EditActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit)
 
-        fab_capture.setOnClickListener { validatePermissions()}
+        GApp = application as GroceryApplication
+
+        fabCapturePhoto?.setOnClickListener { validatePermissions()}
 
         // get the references from layout file
         textViewDate = this.expirationDate as TextView?
@@ -186,7 +189,6 @@ class EditActivity : AppCompatActivity() {
                     or Intent.FLAG_GRANT_WRITE_URI_PERMISSION)
             startActivityForResult(intent, TAKE_PHOTO_REQUEST)
         }
-
     }
 
     private fun processCapturedPhoto() {

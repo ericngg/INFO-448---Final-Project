@@ -32,6 +32,10 @@ android {
         sourceCompatibility = 1.8
         targetCompatibility = 1.8
     }
+
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
+    }
 }
 
 repositories {
@@ -83,4 +87,8 @@ dependencies {
 
     // WorkManager
     implementation "androidx.work:work-runtime-ktx:2.3.4"
+    // GSON
+    implementation 'com.google.code.gson:gson:2.8.6'
+    // Volley
+    implementation 'com.android.volley:volley:1.1.1'
 }

@@ -3,6 +3,7 @@ package com.ljchen17.myapplication
 import android.app.Application
 import android.util.Log
 import com.ljchen17.myapplication.data.model.GroceryDetails
+import com.ljchen17.myapplication.manager.ApiManager
 import com.ljchen17.myapplication.manager.GroceryNotificationManager
 import com.ljchen17.myapplication.manager.GroceryWorkingManager
 import java.lang.System.currentTimeMillis
@@ -13,10 +14,13 @@ class GroceryApplication: Application() {
 
     var allGroceries: List<GroceryDetails> = emptyList()
     var notifiable: Boolean = true
+    var isFirstRound: Boolean = true
 
     lateinit var groceryNotificationManager: GroceryNotificationManager
         private set
     lateinit var groceryWorkingManager: GroceryWorkingManager
+        private set
+    lateinit var apiManager: ApiManager
         private set
 
 
@@ -25,6 +29,7 @@ class GroceryApplication: Application() {
 
         groceryWorkingManager = GroceryWorkingManager(this)
         groceryNotificationManager = GroceryNotificationManager(this)
+        apiManager = ApiManager(this)
     }
 
     fun startNotify() {
@@ -44,6 +49,13 @@ class GroceryApplication: Application() {
             }
             notifiable = false
         }
+    }
+
+    fun httpsNotify() {
+        if (isFirstRound) {
+            groceryWorkingManager.httpsNotification()
+        }
+        isFirstRound = false
     }
 
     fun test(time: String) {

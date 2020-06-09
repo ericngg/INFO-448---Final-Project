@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.ljchen17.myapplication">
 
+    <uses-permission android:name="android.permission.CAMERA" />
+
     <uses-feature
         android:name="android.hardware.camera"
         android:required="true" />
@@ -15,12 +17,10 @@
         android:name=".GroceryApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
-        android:label="Grocery Manager"
         android:roundIcon="@mipmap/ic_launcher_round"
-        android:theme="@style/AppTheme"
-        android:supportsRtl="true">
-        <activity android:name=".activity.FeedbackActivity"></activity>
-        <activity android:name=".activity.StatisticsActivity" />
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".activity.StatisticsActivity"></activity>
         <activity
             android:name=".activity.SettingsActivity"
             android:label="@string/title_activity_settings" />

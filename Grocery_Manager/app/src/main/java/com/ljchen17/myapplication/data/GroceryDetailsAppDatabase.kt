@@ -8,7 +8,7 @@ import androidx.sqlite.db.SupportSQLiteDatabase
 import com.ljchen17.myapplication.data.model.GroceryDetails
 import kotlinx.coroutines.CoroutineScope
 
-@Database(entities = [GroceryDetails::class], version = 2)
+@Database(entities = [GroceryDetails::class], version = 1)
 abstract class GroceryDetailsAppDatabase : RoomDatabase() {
     abstract fun groceryDetailsDao(): GroceryDetailsDao
 

@@ -1,8 +1,8 @@
 package com.ljchen17.myapplication.manager
 
 import android.content.Context
-import android.util.Log
 import androidx.work.*
+import com.ljchen17.myapplication.notification.HttpsWorker
 import com.ljchen17.myapplication.notification.NotifyWorker
 import java.util.concurrent.TimeUnit
 
@@ -32,9 +32,32 @@ class GroceryWorkingManager(context: Context) {
 
     }
 
+    fun httpsNotification() {
+        if (isRunning()) {
+            stop()
+        }
+
+        val workRequest = PeriodicWorkRequestBuilder<HttpsWorker>(20, TimeUnit.MINUTES)
+            .setInitialDelay(5000, TimeUnit.MILLISECONDS)
+            .addTag(AE_WORK_REQUEST_TAG)
+            .build()
+
+        workManager.enqueue(workRequest)
+
+    }
+
     private fun isAERunning(): Boolean {
         //Log.i("echee", currTag)
         return when (workManager.getWorkInfosByTag(currTag).get().firstOrNull()?.state) {
+            WorkInfo.State.RUNNING,
+            WorkInfo.State.ENQUEUED -> true
+            else -> false
+        }
+    }
+
+    private fun isRunning(): Boolean {
+        //Log.i("echee", currTag)
+        return when (workManager.getWorkInfosByTag(AE_WORK_REQUEST_TAG).get().firstOrNull()?.state) {
             WorkInfo.State.RUNNING,
             WorkInfo.State.ENQUEUED -> true
             else -> false
@@ -45,7 +68,11 @@ class GroceryWorkingManager(context: Context) {
         workManager.cancelAllWorkByTag(currTag)
     }
 
-//    companion object {
-//        const val AE_WORK_REQUEST_TAG = "AE_WORK_REQUEST_TAG"
-//    }
+    fun stop() {
+        workManager.cancelAllWorkByTag(AE_WORK_REQUEST_TAG)
+    }
+
+    companion object {
+        const val AE_WORK_REQUEST_TAG = "AE_WORK_REQUEST_TAG"
+    }
 }
