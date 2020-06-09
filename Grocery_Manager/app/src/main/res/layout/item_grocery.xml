@@ -6,22 +6,27 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:padding="16dp"
+    android:background="@color/white"
+    android:clickable="true"
+    android:focusable="true"
     >
-    
+
     <ImageView
         android:id="@+id/ivGroceryImage"
         android:layout_width="55dp"
         android:layout_height="55dp"
-        />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/quantity"
         android:layout_width="35dp"
-        android:layout_height="55dp"
+        android:layout_height="60dp"
         android:hint="Quantity of item"
-        android:textSize="23dp"
+        android:textSize="25sp"
         android:padding="3dp"
         android:gravity="center"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/ivGroceryImage"
         app:layout_constraintStart_toEndOf="@+id/ivGroceryImage"
         app:layout_constraintTop_toTopOf="@+id/ivGroceryImage" />
@@ -32,6 +37,7 @@
         android:layout_height="wrap_content"
         android:hint="Name of the grocery"
         android:padding="3dp"
+        android:textSize="20sp"
         android:textAlignment="viewStart"
         app:layout_constraintLeft_toRightOf="@id/quantity"
         app:layout_constraintTop_toTopOf="parent"
@@ -43,6 +49,7 @@
         android:layout_height="wrap_content"
         android:hint="Expiration Date"
         android:padding="3dp"
+        android:textColor="?android:attr/colorAccent"
         android:textAlignment="viewEnd"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/quantity"

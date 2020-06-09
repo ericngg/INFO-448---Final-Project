@@ -13,4 +13,6 @@
     <color name="background">#303030</color>
     <color name="white">#ffffff</color>
     <color name="salmon">#FF5E64</color>
+    <color name="green">#11A624</color>
+    <color name="submit">#10C527</color>
 </resources>

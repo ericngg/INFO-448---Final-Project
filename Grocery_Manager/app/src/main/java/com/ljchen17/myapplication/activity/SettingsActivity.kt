@@ -3,7 +3,6 @@ package com.ljchen17.myapplication.activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.os.Handler
 import android.text.InputType
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -73,6 +72,13 @@ class SettingsFragment : PreferenceFragmentCompat() {
             Timer("Quit", false).schedule(5000) {
                 exitProcess(0);
             }
+
+            true
+        }
+
+        val feedback: Preference? = findPreference("feedback")
+        feedback?.setOnPreferenceClickListener {
+            startActivity(Intent(context, FeedbackActivity::class.java))
 
             true
         }

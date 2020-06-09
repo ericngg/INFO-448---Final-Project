@@ -96,7 +96,8 @@
     <PreferenceCategory app:title="OTHER" />
 
     <Preference
-        app:title="Send Feedback" />
+        app:title="Send Feedback"
+        app:key="feedback" />
 
     <Preference
         app:title="Sign Out"
