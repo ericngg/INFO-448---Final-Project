@@ -31,6 +31,8 @@ class StatisticsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_statistics)
 
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
         // Create the observer which updates the UI.
         val statsObserver = Observer<List<GroceryDetails>> { newData ->
             val aaChartModel = AAChartModel()
@@ -145,6 +147,12 @@ class StatisticsActivity : AppCompatActivity() {
 //
 //        return seriesElements.toTypedArray()
 //    }
+
+    override fun onSupportNavigateUp(): Boolean {
+
+        finish()
+        return super.onNavigateUp()
+    }
 
     @SuppressLint("ResourceAsColor")
     private fun theme() {

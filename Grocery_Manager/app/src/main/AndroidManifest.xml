@@ -11,7 +11,7 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
 
-    <applicatio
+    <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="Grocery Manager"
@@ -38,6 +38,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-    </applicatio>
+    </application>
 
 </manifest>
