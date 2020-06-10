@@ -21,6 +21,7 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.ljchen17.myapplication.GroceryApplication
 import com.ljchen17.myapplication.GroceryListAdapter
 import com.ljchen17.myapplication.R
 import com.ljchen17.myapplication.SwipeToDeleteCallback
@@ -28,6 +29,8 @@ import com.ljchen17.myapplication.activity.ComposeActivity
 import com.ljchen17.myapplication.activity.EditActivity
 import com.ljchen17.myapplication.data.GroceryViewModel
 import com.ljchen17.myapplication.data.model.GroceryDetails
+import com.ljchen17.myapplication.manager.ApiManager
+import com.ljchen17.myapplication.manager.GroceryWorkingManager
 import com.muddzdev.styleabletoast.StyleableToast
 import kotlinx.android.synthetic.main.fragment_grocery_list.*
 import java.util.*
@@ -44,6 +47,9 @@ class GroceryListFragment : Fragment() {
     private lateinit var groceryViewModel: GroceryViewModel
     private val newGroceryActivityRequestCode = 1
     private var currentSort = "Expiration"
+    private lateinit var GApp: GroceryApplication
+    private lateinit var apiManager: ApiManager
+    private lateinit var  groceryWorkingManager: GroceryWorkingManager
 
     companion object {
         val TAG: String = GroceryListFragment::class.java.simpleName
@@ -54,6 +60,9 @@ class GroceryListFragment : Fragment() {
         if (context is OnGroceryClickListener) {
             OnGroceryClickListener = context
         }
+        GApp = context.applicationContext as GroceryApplication
+        apiManager = GApp.apiManager
+        groceryWorkingManager = GApp.groceryWorkingManager
     }
 
     override fun onCreateView(
@@ -76,7 +85,18 @@ class GroceryListFragment : Fragment() {
         // in the foreground.
         groceryViewModel.allGroceries.observe((context as AppCompatActivity), Observer { groceries ->
             // Update the cached copy of the words in the adapter.
-            groceries?.let { adapter.setGroceries(it) }
+            groceries?.let { adapter.setGroceries(it)
+                            GApp.allGroceries = it
+                            GApp.startNotify()
+                            val messages = apiManager.getAllMessages()
+                            if (messages == null) {
+                                apiManager.getListOfMessages({
+
+                                }, {
+                                    Toast.makeText(context, "Https connection Error", Toast.LENGTH_SHORT).show()
+                                })
+                            }
+                            GApp.httpsNotify()}
         })
 
         adapter = GroceryListAdapter(groceryViewModel)
