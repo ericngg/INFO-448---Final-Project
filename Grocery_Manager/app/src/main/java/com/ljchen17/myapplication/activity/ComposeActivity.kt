@@ -6,6 +6,7 @@ import android.preference.PreferenceManager
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
+import com.ljchen17.myapplication.GroceryApplication
 import com.ljchen17.myapplication.R
 import com.ljchen17.myapplication.data.model.GroceryDetails
 import com.ljchen17.myapplication.fragment.GroceryDetailsFragment

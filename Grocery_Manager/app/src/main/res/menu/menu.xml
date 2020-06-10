@@ -10,4 +10,11 @@
         android:id="@+id/itemSettings"
         android:title="Settings"
         />
+    <item
+        android:id="@+id/action_edit"
+        android:icon="@drawable/edit_icon_white_18dp"
+        android:title="Text to be seen by user"
+        app:showAsAction="always"
+        android:orderInCategory="0"/>
+
 </menu>

@@ -14,11 +14,34 @@ The United States is the global leader in food waste, with nearly 40 million ton
 1. Supports sort and search for items in the list
 1. Settings that allows the user to change their profile information like user, customize their UI with supported dark mode theme, or sign out of their account.
 1. Includes a statistic feature that allows the user to have an analytical view on how their habits are for saving and wasting the foods they own.
+1. Gives greetings to the user to stay healthy.
+1. Send notifications to user on the expiration date of each item in the list. 
 
 ### Sreenshots/Gif:
+<img src="Final_1.png" alt="final_diagram" style="zoom:75%;" />
 
-##### Pixel 3 XL Emulator
+<img src="Final_2.png" alt="final_diagram" style="zoom:75%;" />
 
-Activity based
+<img src="Final_3.png" alt="final_diagram" style="zoom:75%;" />
 
-<img src="https://github.com/ericngg/Dotify/blob/hw4/extras/hw4/hw4.JPG" alt="emulator" /> ![Pixel 3XL Emulator](https://github.com/ericngg/Dotify/blob/hw4/extras/hw4/hw4.gif)
+<img src="Final_4.png" alt="final_diagram" style="zoom:75%;" />
+
+<img src="Final_5.png" alt="final_diagram" style="zoom:75%;" />
+
+<img src="Final_6.png" alt="final_diagram" style="zoom:75%;" />
+
+<img src="Final_7.png" alt="final_diagram" style="zoom:75%;" />
+
+<img src="Final_8.png" alt="final_diagram" style="zoom:75%;" />
+
+<img src="Final_9.png" alt="final_diagram" style="zoom:75%;" />
+
+<img src="Final_10.png" alt="final_diagram" style="zoom:75%;" />
+
+<img src="Final_11.png" alt="final_diagram" style="zoom:75%;" />
+
+<img src="Final_12.png" alt="final_diagram" style="zoom:75%;" />
+
+<img src="Final_13.png" alt="final_diagram" style="zoom:75%;" />
+
+<img src="Final_14.png" alt="final_diagram" style="zoom:75%;" />

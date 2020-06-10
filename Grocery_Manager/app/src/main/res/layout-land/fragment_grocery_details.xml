@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="@dimen/allsides_padding"
-    android:background="@color/white"
+    android:background="@color/colorWhite"
     tools:context=".fragment.GroceryDetailsFragment">
 
     <include layout="@layout/grocery_details" />

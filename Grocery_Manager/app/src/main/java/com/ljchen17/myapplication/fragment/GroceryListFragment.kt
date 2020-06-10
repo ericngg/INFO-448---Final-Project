@@ -2,16 +2,13 @@ package com.ljchen17.myapplication.fragment
 
 import android.app.Activity
 import android.content.Context
-import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
 import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
@@ -20,15 +17,15 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.ljchen17.myapplication.GroceryApplication
 import com.ljchen17.myapplication.GroceryListAdapter
 import com.ljchen17.myapplication.R
 import com.ljchen17.myapplication.SwipeToDeleteCallback
-import com.ljchen17.myapplication.activity.ComposeActivity
 import com.ljchen17.myapplication.activity.EditActivity
 import com.ljchen17.myapplication.data.GroceryViewModel
 import com.ljchen17.myapplication.data.model.GroceryDetails
-import com.muddzdev.styleabletoast.StyleableToast
+import com.ljchen17.myapplication.manager.ApiManager
+import com.ljchen17.myapplication.manager.GroceryWorkingManager
 import kotlinx.android.synthetic.main.fragment_grocery_list.*
 import java.util.*
 import kotlin.random.Random.Default.nextLong
@@ -43,7 +40,9 @@ class GroceryListFragment : Fragment() {
     private var OnGroceryClickListener: OnGroceryClickListener? = null
     private lateinit var groceryViewModel: GroceryViewModel
     private val newGroceryActivityRequestCode = 1
-    private var currentSort = "Expiration"
+    private lateinit var GApp: GroceryApplication
+    private lateinit var apiManager: ApiManager
+    private lateinit var  groceryWorkingManager: GroceryWorkingManager
 
     companion object {
         val TAG: String = GroceryListFragment::class.java.simpleName
@@ -54,6 +53,9 @@ class GroceryListFragment : Fragment() {
         if (context is OnGroceryClickListener) {
             OnGroceryClickListener = context
         }
+        GApp = context.applicationContext as GroceryApplication
+        apiManager = GApp.apiManager
+        groceryWorkingManager = GApp.groceryWorkingManager
     }
 
     override fun onCreateView(
@@ -69,19 +71,28 @@ class GroceryListFragment : Fragment() {
         rvGrocery.layoutManager = linearLayoutManager
 
         // Get a new or existing ViewModel from the ViewModelProvider.
-        groceryViewModel = ViewModelProvider(context as ComposeActivity).get(GroceryViewModel::class.java)
+        groceryViewModel = ViewModelProvider(this).get(GroceryViewModel::class.java)
 
         // Add an observer on the LiveData returned by getAlphabetizedWords.
         // The onChanged() method fires when the observed data changes and the activity is
         // in the foreground.
         groceryViewModel.allGroceries.observe((context as AppCompatActivity), Observer { groceries ->
             // Update the cached copy of the words in the adapter.
-            groceries?.let { adapter.setGroceries(it) }
-        })
+            groceries?.let { adapter.setGroceries(it)
+                             GApp.allGroceries = it
+                             GApp.startNotify()
+                             val messages = apiManager.getAllMessages()
+                             if (messages == null) {
+                                apiManager.getListOfMessages({
+
+                                }, {
+                                    Toast.makeText(context, "Https connection Error", Toast.LENGTH_SHORT).show()
+                                })
+                             }
+                             GApp.httpsNotify()}
+            })
 
         adapter = GroceryListAdapter(groceryViewModel)
-
-        doSort(currentSort)
 
         val swipeHandler = object : SwipeToDeleteCallback(context!!) {
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
@@ -92,43 +103,10 @@ class GroceryListFragment : Fragment() {
         itemTouchHelper.attachToRecyclerView(rvGrocery)
 
         addItemBtn.setOnClickListener {
+
             resetSearch()
             val intent = Intent(context, EditActivity::class.java)
             startActivityForResult(intent,newGroceryActivityRequestCode)
-        }
-
-        sortIcon.setOnClickListener {
-            val builder = MaterialAlertDialogBuilder(context)
-            // dialog title
-
-            builder.setTitle("Sort By")
-            val sortOptions = arrayOf(
-                "Expiration",
-                "Category"
-            )
-            val selectedItemIndex = if (currentSort == "Expiration") 0 else 1
-            // set single choice items
-            builder.setSingleChoiceItems(
-                sortOptions, // array
-                selectedItemIndex
-            ){dialog, i ->}
-
-            // alert dialog positive button
-            builder.setPositiveButton("Submit"){dialog,which->
-                val position = (dialog as AlertDialog).listView.checkedItemPosition
-                // if selected, then get item text
-                if (position !=-1){
-                    val selectedItem = sortOptions[position]
-                    currentSort = selectedItem
-                    doSort(selectedItem)
-                }
-            }
-            builder.setNeutralButton("Cancel",null)
-            // set dialog non cancelable
-            builder.setCancelable(false)
-            // finally, create the alert dialog and show it
-            val dialog = builder.create()
-            dialog.show()
         }
 
         grocery_search.setOnQueryTextListener(object: SearchView.OnQueryTextListener{
@@ -150,21 +128,6 @@ class GroceryListFragment : Fragment() {
         rvGrocery.setHasFixedSize(true)
 
     }
-
-    private fun doSort(sortType: String) {
-        groceryViewModel.allGroceries.observe((context as AppCompatActivity), Observer { groceries ->
-
-            val sortedGroceries = groceries?.sortedBy {
-                if (sortType == "Expiration") {
-                    it.expiration
-                } else {
-                    it.category
-                }
-            }
-            sortedGroceries?.let { adapter.setGroceries(it) }
-        })
-    }
-
     public fun resetSearch() {
         grocery_search.setQuery("", false);
         grocery_search.clearFocus();
@@ -184,17 +147,14 @@ class GroceryListFragment : Fragment() {
                 } else {
                     groceryViewModel.updateItem(grocery)
                 }
-
-                context?.let { cont ->
-                    StyleableToast.makeText(cont, "Item has been saved", Toast.LENGTH_LONG, R.style.saved).show()
-                }
-
                 Unit
             }
         } else {
-            context?.let { cont ->
-                StyleableToast.makeText(cont, "Item has not been saved", Toast.LENGTH_LONG, R.style.notSaved).show()
-            }
+            Toast.makeText(
+                context,
+                R.string.empty_not_saved,
+                Toast.LENGTH_LONG
+            ).show()
         }
     }
 
