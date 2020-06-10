@@ -17,8 +17,3 @@ The United States is the global leader in food waste, with nearly 40 million ton
 
 ### Sreenshots/Gif:
 
-##### Pixel 3 XL Emulator
-
-Activity based
-
-<img src="https://github.com/ericngg/Dotify/blob/hw4/extras/hw4/hw4.JPG" alt="emulator" /> ![Pixel 3XL Emulator](https://github.com/ericngg/Dotify/blob/hw4/extras/hw4/hw4.gif)
