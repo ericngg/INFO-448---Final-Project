@@ -16,4 +16,28 @@ The United States is the global leader in food waste, with nearly 40 million ton
 1. Includes a statistic feature that allows the user to have an analytical view on how their habits are for saving and wasting the foods they own.
 
 ### Sreenshots/Gif:
+<img src="Final_1.png" alt="final_diagram" style="zoom:75%;" />
 
+<img src="Final_2.png" alt="final_diagram" style="zoom:75%;" />
+
+<img src="Final_3.png" alt="final_diagram" style="zoom:75%;" />
+
+<img src="Final_4.png" alt="final_diagram" style="zoom:75%;" />
+
+<img src="Final_5.png" alt="final_diagram" style="zoom:75%;" />
+
+<img src="Final_6.png" alt="final_diagram" style="zoom:75%;" />
+
+<img src="Final_7.png" alt="final_diagram" style="zoom:75%;" />
+
+<img src="Final_8.png" alt="final_diagram" style="zoom:75%;" />
+
+<img src="Final_9.png" alt="final_diagram" style="zoom:75%;" />
+
+<img src="Final_10.png" alt="final_diagram" style="zoom:75%;" />
+
+<img src="Final_11.png" alt="final_diagram" style="zoom:75%;" />
+
+<img src="Final_12.png" alt="final_diagram" style="zoom:75%;" />
+
+<img src="Final_13.png" alt="final_diagram" style="zoom:75%;" />
