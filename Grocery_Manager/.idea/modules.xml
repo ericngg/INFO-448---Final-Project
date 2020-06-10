@@ -4,7 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/Dotify.iml" filepath="$PROJECT_DIR$/.idea/Dotify.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/Grocery_Manager-app.iml" filepath="$PROJECT_DIR$/app/Grocery_Manager-app.iml" group="My Application/app" />
-      <module fileurl="file://$PROJECT_DIR$/My Application.iml" filepath="$PROJECT_DIR$/My Application.iml" group="My Application" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/My_Application.iml" filepath="$PROJECT_DIR$/.idea/modules/My_Application.iml" group="My_Application" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" group="My Application/app" />
     </modules>
   </component>
