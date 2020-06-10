@@ -9,6 +9,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.preference.*
 import com.ljchen17.myapplication.R
 import com.muddzdev.styleabletoast.StyleableToast
+import java.util.*
+import kotlin.concurrent.schedule
+import kotlin.system.exitProcess
 
 
 class SettingsActivity : AppCompatActivity() {
@@ -29,6 +32,7 @@ class SettingsActivity : AppCompatActivity() {
             .replace(R.id.settings, SettingsFragment())
             .commit()
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
     }
 
     override fun onSupportNavigateUp(): Boolean {
@@ -47,8 +51,7 @@ class SettingsFragment : PreferenceFragmentCompat() {
 
         cont = this.requireContext()
 
-        var theme: SwitchPreferenceCompat? = findPreference("theme")
-
+        val theme: SwitchPreferenceCompat? = findPreference("theme")
         theme?.setOnPreferenceChangeListener { preference, newValue ->
             if (newValue as Boolean) {
                 context?.let { cont ->
@@ -61,6 +64,25 @@ class SettingsFragment : PreferenceFragmentCompat() {
             }
             true
         }
+
+        val signout: Preference? = findPreference("signout")
+        signout?.setOnPreferenceClickListener {
+
+            StyleableToast.makeText(cont, "Exiting App..", Toast.LENGTH_SHORT, R.style.quitToast).show()
+            Timer("Quit", false).schedule(5000) {
+                exitProcess(0);
+            }
+
+            true
+        }
+
+        val feedback: Preference? = findPreference("feedback")
+        feedback?.setOnPreferenceClickListener {
+            startActivity(Intent(context, FeedbackActivity::class.java))
+
+            true
+        }
+
     }
 
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {

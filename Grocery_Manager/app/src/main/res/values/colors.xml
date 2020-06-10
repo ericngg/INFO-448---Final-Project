@@ -3,7 +3,6 @@
     <color name="colorPrimary">#6200EE</color>
     <color name="colorPrimaryDark">#3700B3</color>
     <color name="colorAccent">#E1162E</color>
-    <color name="colorWhite">#FFFFFF</color>
     <color name="darkPrimary">#212121</color>
     <color name="black">#000000</color>
 
@@ -12,13 +11,10 @@
     <color name="colorAccentNight">#ffffff</color>
     <color name="primaryTitleColor">#212121</color>
     <color name="background">#303030</color>
-<<<<<<< HEAD
     <color name="white">#ffffff</color>
     <color name="salmon">#FF5E64</color>
     <color name="green">#11A624</color>
     <color name="submit">#10C527</color>
 
     <color name="graphBackground">#7C7C7C</color>
-=======
->>>>>>> https_connection
 </resources>

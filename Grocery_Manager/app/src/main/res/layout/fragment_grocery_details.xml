@@ -4,7 +4,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="@dimen/allsides_padding"
-    android:background="@color/colorWhite"
+    android:background="@color/white"
+    android:focusable="true"
+    android:clickable="true"
     tools:context=".fragment.GroceryDetailsFragment">
 
     <include layout="@layout/grocery_details" />

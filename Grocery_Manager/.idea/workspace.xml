@@ -2,11 +2,13 @@
 <project version="4">
   <component name="AndroidLayouts">
     <shared>
-      <config />
+      <config>
+        <device id="pixel_3_xl" />
+        <device id="Nexus 9" />
+      </config>
     </shared>
   </component>
   <component name="AndroidLogFilters">
-<<<<<<< HEAD
     <option name="TOOL_WINDOW_CUSTOM_FILTER" value="database42" />
     <option name="TOOL_WINDOW_LOG_LEVEL" value="debug" />
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="No Filters" />
@@ -55,14 +57,6 @@
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_grocery_list.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_grocery_list.xml" afterDir="false" />
 >>>>>>> 0e09cb5bffe48489b6d3fd0ce8f47ac2e1a7d32c
     </list>
-=======
-    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="echee" />
-    <option name="TOOL_WINDOW_LOG_LEVEL" value="info" />
-    <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="No Filters" />
-  </component>
-  <component name="ChangeListManager">
-    <list default="true" id="e6e41319-933f-4d6a-8f0f-271833f8fb30" name="Default Changelist" comment="" />
->>>>>>> https_connection
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,14 +64,10 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
 <<<<<<< HEAD
-<<<<<<< HEAD
   <component name="ExecutionTargetManager" SELECTED_TARGET="Pixel_API_29" />
 =======
   <component name="ExecutionTargetManager" SELECTED_TARGET="Pixel_3a_XL_API_29" />
 >>>>>>> master
-=======
-  <component name="ExecutionTargetManager" SELECTED_TARGET="Pixel_2_API_29" />
->>>>>>> https_connection
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -104,10 +94,7 @@
         <option value="valueResourceFile" />
         <option value="Kotlin File" />
         <option value="layoutResourceFile" />
-<<<<<<< HEAD
         <option value="resourceFile" />
-=======
->>>>>>> https_connection
         <option value="Kotlin Class" />
       </list>
     </option>
@@ -130,7 +117,6 @@
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
 <<<<<<< HEAD
-<<<<<<< HEAD
     <property name="DEBUGGABLE_DEVICE" value="Pixel_API_29 [emulator-5554]" />
     <property name="DEBUGGABLE_PROCESS" value="com.ljchen17.myapplication" />
     <property name="DEBUGGER_ID" value="Auto" />
@@ -140,37 +126,27 @@
     <property name="DeviceAndSnapshotComboBoxAction.selectedDevice" value="R58M304R60J" />
     <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2020-06-09T06:24:55.933Z" />
 >>>>>>> 0e09cb5bffe48489b6d3fd0ce8f47ac2e1a7d32c
-=======
-    <property name="DeviceAndSnapshotComboBoxAction.selectedDevice" value="Pixel_2_API_29" />
-    <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2020-04-20T02:11:26.205Z" />
->>>>>>> https_connection
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="SHOW_ALL_PROCESSES" value="false" />
     <property name="android.sdk.path" value="$USER_HOME$/Library/Android/sdk" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/app/src/main/res/drawable" />
-<<<<<<< HEAD
     <property name="last_opened_file_path" value="$USER_HOME$/OneDrive/Desktop/temp/INFO-448---Final-Project/Grocery_Manager" />
     <property name="project.structure.last.edited" value="Modules" />
-=======
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="project.structure.last.edited" value="Dependencies" />
->>>>>>> https_connection
     <property name="project.structure.proportion" value="0.17" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
-    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/app/src/main/res/drawable" />
     </key>
     <key name="MoveKotlinTopLevelDeclarationsDialog.RECENTS_KEY">
-      <recent name="com.ljchen17.myapplication.data" />
       <recent name="com.ljchen17.myapplication.activity" />
+      <recent name="com.ljchen17.myapplication.data" />
     </key>
     <key name="android.template.packageName">
-      <recent name="com.ljchen17.myapplication.activity" />
       <recent name="com.ljchen17.myapplication" />
+      <recent name="com.ljchen17.myapplication.activity" />
     </key>
     <key name="CopyKotlinDeclarationDialog.RECENTS_KEY">
       <recent name="com.ljchen17.myapplication.data" />
@@ -270,6 +246,10 @@
       <GradleScriptDebugEnabled>true</GradleScriptDebugEnabled>
       <method v="2" />
     </configuration>
+    <list>
+      <item itemvalue="Android App.app" />
+      <item itemvalue="Gradle.Dotify [dependencies]" />
+    </list>
     <recent_temporary>
       <list>
         <item itemvalue="Gradle.Dotify [dependencies]" />
@@ -305,12 +285,11 @@
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint enabled="true" type="kotlin-line">
+        <line-breakpoint type="kotlin-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/ljchen17/myapplication/data/GroceryRepository.kt</url>
           <line>38</line>
           <option name="timeStamp" value="10" />
         </line-breakpoint>
-<<<<<<< HEAD
         <line-breakpoint type="kotlin-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/ljchen17/myapplication/activity/EditActivity.kt</url>
           <line>144</line>
@@ -334,8 +313,6 @@
         </line-breakpoint>
 =======
 >>>>>>> master
-=======
->>>>>>> https_connection
       </breakpoints>
     </breakpoint-manager>
   </component>

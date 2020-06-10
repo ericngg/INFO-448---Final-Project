@@ -32,7 +32,6 @@ import java.text.SimpleDateFormat
 import java.util.*
 import java.util.jar.Manifest
 import android.preference.PreferenceManager
-import com.ljchen17.myapplication.GroceryApplication
 
 class EditActivity : AppCompatActivity() {
 
@@ -42,12 +41,9 @@ class EditActivity : AppCompatActivity() {
     var imagePath:String? = null
 
     var editContainer: ConstraintLayout? = null
-    var fabCapturePhoto: FloatingActionButton? = null
 
     private val TAKE_PHOTO_REQUEST = 101
     private var mCurrentPhotoPath: String = ""
-
-    lateinit var GApp: GroceryApplication
 
     override fun onCreate(savedInstanceState: Bundle?) {
         theme()
@@ -55,9 +51,7 @@ class EditActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit)
 
-        GApp = application as GroceryApplication
-
-        fabCapturePhoto?.setOnClickListener { validatePermissions()}
+        fab_capture.setOnClickListener { validatePermissions()}
 
         // get the references from layout file
         textViewDate = this.expirationDate as TextView?
@@ -189,6 +183,7 @@ class EditActivity : AppCompatActivity() {
                     or Intent.FLAG_GRANT_WRITE_URI_PERMISSION)
             startActivityForResult(intent, TAKE_PHOTO_REQUEST)
         }
+
     }
 
     private fun processCapturedPhoto() {
@@ -252,7 +247,6 @@ class EditActivity : AppCompatActivity() {
             replyIntent.putExtra(EXTRA_REPLY, item)
             setResult(Activity.RESULT_OK, replyIntent)
         }
-        GApp.notifiable = true
         finish()
     }
 

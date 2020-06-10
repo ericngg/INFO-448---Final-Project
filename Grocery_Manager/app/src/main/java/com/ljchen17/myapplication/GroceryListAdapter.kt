@@ -1,5 +1,6 @@
 package com.ljchen17.myapplication
 
+import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,6 +11,9 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.ljchen17.myapplication.data.GroceryViewModel
 import com.ljchen17.myapplication.data.model.GroceryDetails
+import com.squareup.picasso.Picasso
+import kotlinx.android.synthetic.main.activity_edit.*
+import java.io.File
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -51,7 +55,16 @@ class GroceryListAdapter(val groceryViewModel: GroceryViewModel): RecyclerView.A
             groceryTitle.text = grocery.itemName
             groceryQuantity.text = grocery.quantity.toString()
             groceryExpiration.text = "Expires On: " + grocery.expiration
-            // songImage.setImageResource(grocery.smallImageID)
+            val imagePath = grocery.imagePath
+
+            if (imagePath != null) {
+                groceryImage.visibility = View.VISIBLE
+                val file = File(imagePath)
+                val uri = Uri.fromFile(file)
+                Picasso.get().load(uri).into(groceryImage)
+            } else {
+                groceryImage.visibility = View.INVISIBLE
+            }
 
             itemView.setOnClickListener {
                 onGroceryClickListener?.invoke(grocery)

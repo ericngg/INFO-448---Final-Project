@@ -27,6 +27,7 @@
         app:fabSize="normal"
         app:layout_constraintRight_toRightOf="parent"
         app:srcCompat="@drawable/ic_add_a_photo_black"
+        app:tint="?android:attr/textColor"
         app:layout_constraintTop_toTopOf="parent"
         />
 
@@ -37,7 +38,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/cover_margintop"
         android:textAlignment="viewStart"
-        android:hint="itemName"
+        android:hint="Item name"
+        android:inputType="textImeMultiLine"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintStart_toStartOf="@id/cover"
         app:layout_constraintTop_toBottomOf="@id/cover" />
@@ -47,10 +49,12 @@
         style="@android:style/TextAppearance.Small"
         android:layout_width="67dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
         android:hint="quantity"
+        android:inputType="number"
         android:textAlignment="viewStart"
         app:layout_constraintHorizontal_weight="1"
-        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintLeft_toLeftOf="@id/text2"
         app:layout_constraintRight_toLeftOf="@id/expirationDate"
         app:layout_constraintStart_toStartOf="@id/itemName"
         app:layout_constraintTop_toBottomOf="@id/itemName" />
@@ -74,11 +78,12 @@
         style="@android:style/TextAppearance.Small"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingLeft="4dp"
-        android:textAlignment="viewStart"
         android:text="Category: "
+        android:textAlignment="viewStart"
+        android:textColor="?android:attr/colorAccent"
+        android:textStyle="bold"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintStart_toStartOf="@id/quantity"
+        app:layout_constraintStart_toStartOf="@+id/text2"
         app:layout_constraintTop_toBottomOf="@id/quantity" />
 
     <Spinner
@@ -98,22 +103,71 @@
         android:layout_width="@dimen/cover_width"
         android:layout_height="wrap_content"
         android:ems="14"
+        android:hint="Fill in more details of the item :)"
         android:textAlignment="viewStart"
-        android:hint="description"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintStart_toStartOf="@id/cover"
-        app:layout_constraintTop_toBottomOf="@id/category" />
+        app:layout_constraintTop_toBottomOf="@+id/text4" />
 
     <Button
         android:onClick="submitData"
         android:id="@+id/confirmEdit"
         style="@android:style/TextAppearance.Small"
-        android:layout_width="wrap_content"
+        android:layout_width="@dimen/cover_width"
         android:layout_height="wrap_content"
         android:text="SUBMIT"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:backgroundTint="@color/submit"
+        android:background="@drawable/button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/description" />
+
+    <TextView
+        android:id="@+id/text1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Name:"
+        android:textStyle="bold"
+        android:textColor="?android:attr/colorAccent"
+        app:layout_constraintBottom_toTopOf="@+id/itemName"
+        app:layout_constraintStart_toStartOf="@+id/cover" />
+
+    <TextView
+        android:id="@+id/text2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="11dp"
+
+        android:text="Qty:"
+        android:textColor="?android:attr/colorAccent"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/itemName"
+        app:layout_constraintTop_toBottomOf="@+id/itemName" />
+
+    <TextView
+        android:id="@+id/text3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Exp:"
+        android:textColor="?android:attr/colorAccent"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/expirationDate"
+        app:layout_constraintTop_toBottomOf="@+id/itemName" />
+
+    <TextView
+        android:id="@+id/text4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Description:"
+        android:textColor="?android:attr/colorAccent"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/categoryTitle"
+        app:layout_constraintTop_toBottomOf="@+id/categoryTitle" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
